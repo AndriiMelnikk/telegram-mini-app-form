@@ -1,6 +1,8 @@
-.info_wrapper{
-    padding: 20px 0;
+.info_wrapper {
   display: flex;
-justify-content: space-between;
-width: 100%;
+  justify-content: space-between;
+  width: 100%;
+  > div:first-child > h6 {
+    text-align: left;
+  }
 }

@@ -32,6 +32,7 @@ function RootInner({ children }: PropsWithChildren) {
         style={{
           background: 'var(--tgui--secondary_bg_color)',
           padding: '0 20px',
+          minHeight: '100vh',
         }}
       >
         {children}
