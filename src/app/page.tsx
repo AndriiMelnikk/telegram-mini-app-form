@@ -20,6 +20,7 @@ import {
   Title,
 } from "@telegram-apps/telegram-ui";
 import { BsStars } from "react-icons/bs";
+import { MdChevronRight } from "react-icons/md";
 
 export default function Home() {
   const t = useTranslations("i18n");
@@ -48,6 +49,11 @@ export default function Home() {
                     <BsStars size={28} />
                   </IconContainer>
                 }
+                after={
+                  <IconContainer>
+                    <MdChevronRight size={28} />
+                  </IconContainer>
+                }
               >
                 Спробуй нову преміум послугу "Догляд за обличчям"
               </Cell>
@@ -63,6 +69,11 @@ export default function Home() {
                       <IoIosCalendar size={28} />
                     </IconContainer>
                   }
+                  after={
+                    <IconContainer>
+                      <MdChevronRight size={28} />
+                    </IconContainer>
+                  }
                 >
                   Вибрати дату
                 </Cell>
@@ -73,6 +84,11 @@ export default function Home() {
                   before={
                     <IconContainer>
                       <IoIosList size={28} />
+                    </IconContainer>
+                  }
+                  after={
+                    <IconContainer>
+                      <MdChevronRight size={28} />
                     </IconContainer>
                   }
                 >
