@@ -1,12 +1,4 @@
-import {
-  Cell,
-  IconContainer,
-  Info,
-  Link,
-  Placeholder,
-  Section,
-  Title,
-} from '@telegram-apps/telegram-ui';
+import { Cell, IconContainer, Link, Section, Title } from '@telegram-apps/telegram-ui';
 import s from './recordDetails.module.scss';
 import { IoIosCalendar } from 'react-icons/io';
 import { MdChevronRight } from 'react-icons/md';
