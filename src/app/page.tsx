@@ -31,7 +31,7 @@ export default function Home() {
 
         <div>
           <Section>
-            <Link href="/select-services">
+            <Link href="/send-form">
               <Cell
                 before={
                   <IconContainer>

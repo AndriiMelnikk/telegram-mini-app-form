@@ -1,6 +1,6 @@
 'use client';
 
-import { Cell, Info, Input, Radio, Tappable, Title } from '@telegram-apps/telegram-ui';
+import { Cell, Input, Radio, Tappable, Title } from '@telegram-apps/telegram-ui';
 
 import s from './styel.module.scss';
 import { Page } from '@/components/Page';
@@ -65,72 +65,60 @@ const mock = [
 export default function Home() {
   const [value, setValue] = useState('');
   return (
-    <Page back={true}>
-      <div className={s.app_wrapper}>
-        <div className={s.header} style={{ backgroundColor: 'var(--tgui--secondary_bg_color)' }}>
-          <Info subtitle="проспект Повітряних Сил, 44" type="text">
-            Lumberjack Soloma
-          </Info>
-        </div>
+    <Page back={true} header={true}>
+      <div>
+        <Title level="2" weight="2">
+          Вибір послуг
+        </Title>
+      </div>
 
+      <div className={s.radio_wrapper}>
+        <Cell Component="label" before={<Radio name="radio" value="1" defaultChecked />} multiline>
+          Молодший барбер
+        </Cell>
+        <Cell Component="label" before={<Radio name="radio" value="2" />} multiline>
+          Барбер
+        </Cell>
+        <Cell Component="label" before={<Radio name="radio" value="3" />} multiline>
+          Додатковов
+        </Cell>
+      </div>
+      <div className={s.search_wrapper}>
+        <Input
+          placeholder="Пошук ..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          before={
+            <Tappable
+              Component="div"
+              style={{
+                display: 'flex',
+              }}
+              onClick={() => setValue('')}
+            >
+              <IoIosSearch />
+            </Tappable>
+          }
+        />
+      </div>
+
+      <div className={s.premiumService_wrapper}>
+        <PremiumService />
+      </div>
+
+      <div className={s.service_wrapper}>
         <div>
-          <Title level="2" weight="2">
-            Вибір послуг
-          </Title>
-        </div>
-
-        <div className={s.radio_wrapper}>
-          <Cell
-            Component="label"
-            before={<Radio name="radio" value="1" defaultChecked />}
-            multiline
-          >
+          <Title level="3" weight="2">
             Молодший барбер
-          </Cell>
-          <Cell Component="label" before={<Radio name="radio" value="2" />} multiline>
-            Барбер
-          </Cell>
-          <Cell Component="label" before={<Radio name="radio" value="3" />} multiline>
-            Додатковов
-          </Cell>
-        </div>
-        <div className={s.search_wrapper}>
-          <Input
-            placeholder="Пошук ..."
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            before={
-              <Tappable
-                Component="div"
-                style={{
-                  display: 'flex',
-                }}
-                onClick={() => setValue('')}
-              >
-                <IoIosSearch />
-              </Tappable>
-            }
-          />
-        </div>
+          </Title>
 
-        <div className={s.premiumService_wrapper}>
-          <PremiumService />
-        </div>
-
-        <div className={s.service_wrapper}>
           <div>
-            <Title level="3" weight="2">
-              Молодший барбер
-            </Title>
-
-            <div>
-              <CardChangeBarber cards={mock} />
-            </div>
+            <CardChangeBarber cards={mock} />
           </div>
         </div>
-
-        <SumaryChangeService />
       </div>
+
+      <SumaryChangeService />
     </Page>
   );
 }

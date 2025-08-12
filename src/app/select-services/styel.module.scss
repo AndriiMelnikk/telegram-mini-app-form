@@ -2,21 +2,6 @@
   position: relative;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: 80px;
-  z-index: 2;
-  > div {
-    text-align: left;
-  }
-}
-
 .radio_wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
