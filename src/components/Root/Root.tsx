@@ -19,7 +19,7 @@ import "./styles.css";
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
 
-  const isDark = useSignal(miniApp.isDark);
+  const isDark = "light"; // useSignal(miniApp.isDark);
   const initDataUser = useSignal(initData.user);
 
   // Set the user locale.
