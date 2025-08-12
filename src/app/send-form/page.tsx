@@ -1,5 +1,3 @@
-'use client';
-
 import s from './style.module.scss';
 
 import { Page } from '@/components/Page';
@@ -9,7 +7,7 @@ import { Button, Cell, Section } from '@telegram-apps/telegram-ui';
 
 export default function Home() {
   return (
-    <Page back={true} header={true}>
+    <Page back header>
       <RecordDetails />
       <Form />
 

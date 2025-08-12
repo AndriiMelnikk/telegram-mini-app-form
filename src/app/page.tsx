@@ -1,72 +1,42 @@
-'use client';
-
 import { Page } from '@/components/Page';
-
-import { IoIosCalendar, IoIosList } from 'react-icons/io';
-
-import s from './styel.module.scss';
-
-import { Cell, Headline, IconContainer, Section, Title } from '@telegram-apps/telegram-ui';
-
-import { MdChevronRight } from 'react-icons/md';
-import Link from 'next/link';
-
+import NavigationCell from '@/components/page/Home/NavigationCell';
 import PremiumService from '@/components/ui/PremiumService';
+import { IoIosCalendar, IoIosList } from 'react-icons/io';
+import { Title, Headline, Section } from '@telegram-apps/telegram-ui';
+import s from './style.module.scss';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <Page back={false}>
       <div className={s.app_wrapper}>
-        <div>
-          <Title level="1" weight="3">
-            Lumberjack Soloma
-          </Title>
-
-          <Headline weight="3">проспект Повітряних Сил, 44</Headline>
-        </div>
-
-        <div>
-          <PremiumService />
-        </div>
-
-        <div>
-          <Section>
-            <Link href="/send-form">
-              <Cell
-                before={
-                  <IconContainer>
-                    <IoIosCalendar />
-                  </IconContainer>
-                }
-                after={
-                  <IconContainer>
-                    <MdChevronRight />
-                  </IconContainer>
-                }
-              >
-                Вибрати дату
-              </Cell>
-            </Link>
-
-            <Link href="/select-services">
-              <Cell
-                before={
-                  <IconContainer>
-                    <IoIosList />
-                  </IconContainer>
-                }
-                after={
-                  <IconContainer>
-                    <MdChevronRight />
-                  </IconContainer>
-                }
-              >
-                Вибрати послугу
-              </Cell>
-            </Link>
-          </Section>
-        </div>
+        <Header />
+        <PremiumService />
+        <Navigation />
       </div>
     </Page>
+  );
+}
+
+function Header() {
+  return (
+    <div>
+      <Title level="1" weight="3">
+        Lumberjack Soloma
+      </Title>
+      <Headline weight="3">проспект Повітряних Сил, 44</Headline>
+    </div>
+  );
+}
+
+function Navigation() {
+  return (
+    <Section>
+      <NavigationCell href="/send-form" icon={<IoIosCalendar />}>
+        Вибрати дату
+      </NavigationCell>
+      <NavigationCell href="/select-services" icon={<IoIosList />}>
+        Вибрати послугу
+      </NavigationCell>
+    </Section>
   );
 }
