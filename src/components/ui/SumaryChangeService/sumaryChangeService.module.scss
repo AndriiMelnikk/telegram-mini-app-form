@@ -1,0 +1,24 @@
+.app_wrapper {
+  background: var(--tgui--tertiary_bg_color);
+  position: sticky;
+  bottom: 0;
+  left: 0px;
+  height: 150px;
+
+  margin-left: -20px;
+  width: calc(100% + 40px);
+}
+
+.btn_wrapper {
+  padding: 0 20px;
+
+  > button {
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.pen_svg {
+  width: 14px;
+  height: 14px;
+}

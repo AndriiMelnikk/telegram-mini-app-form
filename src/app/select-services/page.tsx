@@ -1,7 +1,6 @@
 'use client';
 
 import { Cell, Info, Input, Radio, Tappable, Title } from '@telegram-apps/telegram-ui';
-import { MdChevronLeft } from 'react-icons/md';
 
 import s from './styel.module.scss';
 import { Page } from '@/components/Page';
@@ -10,6 +9,7 @@ import { useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import PremiumService from '@/components/ui/PremiumService';
 import CardChangeBarber from '@/components/ui/CardChangeBarber';
+import SumaryChangeService from '@/components/ui/SumaryChangeService';
 
 const mock = [
   {
@@ -68,7 +68,6 @@ export default function Home() {
     <Page back={true}>
       <div className={s.app_wrapper}>
         <div className={s.header} style={{ backgroundColor: 'var(--tgui--secondary_bg_color)' }}>
-          <MdChevronLeft />
           <Info subtitle="проспект Повітряних Сил, 44" type="text">
             Lumberjack Soloma
           </Info>
@@ -129,6 +128,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <SumaryChangeService />
       </div>
     </Page>
   );
