@@ -10,7 +10,10 @@
 }
 
 .root {
-  height: 100%;
-  width: 100%;
   overflow: hidden;
+
+  display: block;
+  max-width: 600px;
+  height: 100%;
+  margin: 0 auto;
 }

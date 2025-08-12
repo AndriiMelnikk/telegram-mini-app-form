@@ -1,25 +1,20 @@
-"use client";
+'use client';
 
-import { type PropsWithChildren, useEffect } from "react";
-import {
-  initData,
-  miniApp,
-  useLaunchParams,
-  useSignal,
-} from "@telegram-apps/sdk-react";
-import { AppRoot } from "@telegram-apps/telegram-ui";
+import { type PropsWithChildren, useEffect } from 'react';
+import { initData, miniApp, useLaunchParams, useSignal } from '@telegram-apps/sdk-react';
+import { AppRoot, List } from '@telegram-apps/telegram-ui';
 
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { ErrorPage } from "@/components/ErrorPage";
-import { useDidMount } from "@/hooks/useDidMount";
-import { setLocale } from "@/core/i18n/locale";
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { ErrorPage } from '@/components/ErrorPage';
+import { useDidMount } from '@/hooks/useDidMount';
+import { setLocale } from '@/core/i18n/locale';
 
-import "./styles.css";
+import './styles.css';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
 
-  const isDark = "light"; // useSignal(miniApp.isDark);
+  const isDark = 'light'; // useSignal(miniApp.isDark);
   const initDataUser = useSignal(initData.user);
 
   // Set the user locale.
@@ -29,11 +24,19 @@ function RootInner({ children }: PropsWithChildren) {
 
   return (
     <AppRoot
-      appearance={isDark ? "dark" : "light"}
-      platform={["macos", "ios"].includes(lp.tgWebAppPlatform) ? "ios" : "base"}
+      appearance={isDark ? 'dark' : 'light'}
+      platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
       className="root"
     >
-      {children}
+      <List
+        style={{
+          background: 'var(--tgui--secondary_bg_color)',
+          padding: '40px',
+          height: '100%',
+        }}
+      >
+        {children}
+      </List>
     </AppRoot>
   );
 }

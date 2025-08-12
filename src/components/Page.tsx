@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { backButton } from "@telegram-apps/sdk-react";
-import { PropsWithChildren, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { backButton } from '@telegram-apps/sdk-react';
+import { PropsWithChildren, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function Page({
   children,
