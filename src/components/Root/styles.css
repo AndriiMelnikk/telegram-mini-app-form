@@ -10,8 +10,7 @@
 }
 
 .root {
-  overflow: hidden;
-
+  /* overflow: hidden; */
   display: block;
   max-width: 600px;
   height: 100%;

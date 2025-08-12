@@ -4,14 +4,9 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./src/core/i18n/i18n.ts');
 
 const nextConfig: NextConfig = {
-  // webpack(config) {
-  //   config.module.rules.push({
-  //     test: /\.svg$/i,
-  //     issuer: /\.[jt]sx?$/,
-  //     use: ["@svgr/webpack"],
-  //   });
-  //   return config;
-  // },
+  images: {
+    domains: ['randomuser.me'],
+  },
 };
 
 export default withNextIntl(nextConfig);

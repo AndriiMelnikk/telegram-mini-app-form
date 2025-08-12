@@ -221,3 +221,8 @@ li {
   width: 100vw;
   height: 100vh;
 }
+
+svg {
+  width: 28px;
+  height: 28px;
+}

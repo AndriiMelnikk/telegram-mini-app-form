@@ -14,7 +14,7 @@ import './styles.css';
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
 
-  const isDark = 'light'; // useSignal(miniApp.isDark);
+  const isDark = useSignal(miniApp.isDark);
   const initDataUser = useSignal(initData.user);
 
   // Set the user locale.
@@ -31,8 +31,7 @@ function RootInner({ children }: PropsWithChildren) {
       <List
         style={{
           background: 'var(--tgui--secondary_bg_color)',
-          padding: '40px',
-          height: '100%',
+          padding: '0 20px',
         }}
       >
         {children}

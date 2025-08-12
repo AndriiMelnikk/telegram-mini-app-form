@@ -36,12 +36,12 @@ export default function PremiumService() {
           <Cell
             before={
               <IconContainer>
-                <BsStars size={28} />
+                <BsStars />
               </IconContainer>
             }
             after={
               <IconContainer>
-                <MdChevronRight size={28} />
+                <MdChevronRight />
               </IconContainer>
             }
           >
