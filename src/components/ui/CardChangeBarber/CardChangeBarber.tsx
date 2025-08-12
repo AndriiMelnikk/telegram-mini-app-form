@@ -32,13 +32,12 @@ export default function CardChangeBarber({ cards }: Props) {
             <div>
               {card.job.map((work) => {
                 return (
-                  <div>
+                  <div key={work.id}>
                     <Cell
                       Component="label"
                       after={<Checkbox name="checkbox" value="1" />}
                       subtitle={work.time}
                       multiline
-                      key={work.id}
                       description={work.price + ' ₴'}
                     >
                       {work.title}

@@ -1,22 +1,13 @@
-import { Button, Cell, Info } from '@telegram-apps/telegram-ui';
+import { Button } from '@telegram-apps/telegram-ui';
 import s from './sumaryChangeService.module.scss';
-import { FaPen } from 'react-icons/fa';
+import ModalChoseServise from '../ModalChoseServise';
+import CallCastom from '../CallCastom';
 
 export default function SumaryChangeService() {
+
   return (
     <div className={s.app_wrapper}>
-      <Cell
-        after={
-          <Info subtitle="500 ₴" type="text">
-            <FaPen size={14} className={s.pen_svg} />
-          </Info>
-        }
-        subtitle="1 год. 30хв"
-        hovered
-        className={s.btn_wrapper}
-      >
-        1 послуга
-      </Cell>
+      <CallCastom leftNode="1 послуга" leftText="1 год. 35хв" rightNode={<ModalChoseServise />} rightText="500 ₴" />
 
       <div className={s.btn_wrapper}>
         <Button mode="filled" size="s">

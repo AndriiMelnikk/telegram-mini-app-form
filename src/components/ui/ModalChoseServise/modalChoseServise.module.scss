@@ -1,0 +1,22 @@
+.placeholder_wrapper {
+  display: flex;
+  justify-content: center;
+
+  p {
+    width: 100%;
+  }
+
+  span {
+    text-align: left;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.pen_svg {
+  width: 14px;
+  height: 14px;
+}
