@@ -1,9 +1,9 @@
 'use client';
 
-import { Button, Cell, Radio } from '@telegram-apps/telegram-ui';
+import { Button, } from '@telegram-apps/telegram-ui';
 import s from './style.module.scss';
 import { ServiceType } from '@/context/type';
-import { use, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type Props = {
   services: ServiceType[];
@@ -23,7 +23,7 @@ export default function BarberTypeSelector({
   };
 
   return (
-    <div style={{ display: 'flex', gap: '8px' }}>
+    <div className={s.radio_wrapper}>
       {services.map(service => (
         <Button
           key={service.id}

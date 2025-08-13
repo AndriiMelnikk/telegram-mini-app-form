@@ -11,12 +11,12 @@
 }
 
 .radio_wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+ display: flex; gap: 8px;
 }
 
 .search_wrapper {
   > div {
+    padding:  20px 0 20px;
     background: none;
   }
 }
