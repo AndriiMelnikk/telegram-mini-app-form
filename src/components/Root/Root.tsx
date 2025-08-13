@@ -12,6 +12,7 @@ import { setLocale } from '@/core/i18n/locale';
 import './styles.css';
 import { DataProvider } from '@/context/DataContext';
 import { SelectServiceProvider } from '@/context/SelectServiceContext';
+import { TimeServiceProvider } from '@/context/TimeServiceContext';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -33,15 +34,17 @@ function RootInner({ children }: PropsWithChildren) {
 
       <DataProvider>
         <SelectServiceProvider>
-          <List
-            style={{
-              background: 'var(--tgui--secondary_bg_color)',
-              padding: '0 20px',
-              minHeight: '100vh',
-            }}
-          >
-            {children}
-          </List>
+          <TimeServiceProvider>
+            <List
+              style={{
+                background: 'var(--tgui--secondary_bg_color)',
+                padding: '0 20px',
+                minHeight: '100vh',
+              }}
+            >
+              {children}
+            </List>
+          </TimeServiceProvider>
         </SelectServiceProvider>
       </DataProvider>
 

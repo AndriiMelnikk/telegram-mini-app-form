@@ -7,7 +7,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { styled } from '@mui/material/styles';
-import { useState, useRef } from 'react';
 
 const StyledCalendar = styled(DateCalendar)(({ theme }) => ({
     '& .MuiDayCalendar-weekDayLabel': {
@@ -36,42 +35,19 @@ const StyledCalendar = styled(DateCalendar)(({ theme }) => ({
     },
 }));
 
-export default function MyCalendar() {
-    const [value, setValue] = useState<dayjs.Dayjs | null>(dayjs());
-    const [month, setMonth] = useState<dayjs.Dayjs>(dayjs());
-    const touchStartX = useRef<number | null>(null);
-    const touchEndX = useRef<number | null>(null);
+type CalendarProps = {
+    value: dayjs.Dayjs | null;
+    setValue: (newValue: dayjs.Dayjs | null) => void;
+};
 
-    const handleTouchStart = (e: React.TouchEvent) => {
-        touchStartX.current = e.changedTouches[0].clientX;
-    };
-
-    const handleTouchEnd = (e: React.TouchEvent) => {
-        touchEndX.current = e.changedTouches[0].clientX;
-
-        if (touchStartX.current !== null && touchEndX.current !== null) {
-            const deltaX = touchStartX.current - touchEndX.current;
-
-            if (Math.abs(deltaX) > 50) {
-                if (deltaX > 0) {
-                    setMonth((prev) => prev.add(1, 'month'));
-                } else {
-                    setMonth((prev) => prev.subtract(1, 'month'));
-                }
-            }
-        }
-    };
-
+export default function MyCalendar({ value, setValue }: CalendarProps) {
+ 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-            <div
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-            >
+            <div >
                 <StyledCalendar
                     value={value}
                     onChange={(newValue) => setValue(newValue)}
-                    referenceDate={month}
                 />
             </div>
         </LocalizationProvider>
