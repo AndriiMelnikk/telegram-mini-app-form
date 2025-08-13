@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { formatMinutes } from '@/utils/formatMinutes';
 import { ServiceType } from '@/context/type';
-import { useSelectServiceContext } from '@/context/StorageKeyContext';
+import { useSelectServiceContext } from '@/context/SelectService';
 
 type Props = {
   cards: ServiceType[];

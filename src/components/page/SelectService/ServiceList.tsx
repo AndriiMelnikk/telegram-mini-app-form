@@ -6,7 +6,7 @@ import s from './style.module.scss';
 
 import { StatusReq } from '@/types';
 import useServices from '../Home/hooks/useInitState';
-import { useSelectServiceContext } from '@/context/StorageKeyContext';
+import { useSelectServiceContext } from '@/context/SelectService';
 import useSelectService from '@/app/select-services/hooks/useSelectService';
 import { getSearchServices } from '@/app/select-services/hooks/getSearchServices';
 

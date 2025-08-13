@@ -6,7 +6,7 @@ import { Button, Placeholder, Title } from '@telegram-apps/telegram-ui';
 import { IoIosClose } from 'react-icons/io';
 import { useGetAllJobs } from '../hocks/useGetAllJobs';
 import { formatMinutes } from '@/utils/formatMinutes';
-import { useSelectServiceContext } from '@/context/StorageKeyContext';
+import { useSelectServiceContext } from '@/context/SelectService';
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 
 export default function ContentModal() {

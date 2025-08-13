@@ -145,6 +145,7 @@ a {
   vertical-align: baseline;
   background: transparent;
   text-decoration: none;
+  color: var(--tg-theme-text-color, #fff);
 }
 
 a:hover,

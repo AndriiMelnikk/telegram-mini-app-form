@@ -4,10 +4,11 @@ import { Page } from '@/components/Page';
 import NavigationCell from '@/components/page/Home/NavigationCell';
 import PremiumService from '@/components/ui/PremiumService';
 import { IoIosCalendar, IoIosList } from 'react-icons/io';
-import { Title, Headline, Section, Spinner } from '@telegram-apps/telegram-ui';
+import { Title, Headline, Section } from '@telegram-apps/telegram-ui';
 import s from './style.module.scss';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 import { StatusReq } from '@/types';
+import SpinnerCopmonent from '@/components/ui/Spiner';
 
 export default function HomePage() {
 
@@ -15,9 +16,7 @@ export default function HomePage() {
 
   if (status === StatusReq.pending) {
     return (
-      <div className={s.spinner_wrapper}>
-        <Spinner size="l" />
-      </div>
+      <SpinnerCopmonent page />
     );
   }
   return (

@@ -9,38 +9,48 @@ import SumaryChangeService from '@/components/page/SelectService/SumaryChangeSer
 import useSelectService from './hooks/useSelectService';
 
 import s from './style.module.scss';
-import { SelectServiceProvider } from '@/context/StorageKeyContext';
+import { StatusReq } from '@/types';
+import useInitState from '@/components/page/Home/hooks/useInitState';
+import SpinnerCopmonent from '@/components/ui/Spiner';
+
 
 export default function SelectServicePage() {
   const state = useSelectService();
 
+  const { status } = useInitState();
+
+  if (status === StatusReq.pending) {
+    return (
+      <SpinnerCopmonent page />
+    );
+  }
+
   return (
     <Page back header>
-      <SelectServiceProvider>
-        <Title level="2" weight="2">
-          Вибір послуг
-        </Title>
 
-        <BarberTypeSelector
-          services={state.services}
-          setSelectedCategory={state.setSelectedCategory}
-        />
+      <Title level="2" weight="2">
+        Вибір послуг
+      </Title>
 
-        <ServiceSearch
-          value={state.searchQuery}
-          setValue={state.setSearchQuery}
-          isFocused={state.isFocused}
-          setIsFocused={state.setIsFocused}
-        />
+      <BarberTypeSelector
+        services={state.services}
+        setSelectedCategory={state.setSelectedCategory}
+      />
 
-        <div className={s.premiumService_wrapper}>
-          <PremiumService />
-        </div>
+      <ServiceSearch
+        value={state.searchQuery}
+        setValue={state.setSearchQuery}
+        isFocused={state.isFocused}
+        setIsFocused={state.setIsFocused}
+      />
 
-        <ServiceList setSectionRef={state.setSectionRef} search={state.searchQuery} />
+      <div className={s.premiumService_wrapper}>
+        <PremiumService />
+      </div>
 
-        <SumaryChangeService isFocused={state.isFocused} />
-      </SelectServiceProvider>
+      <ServiceList setSectionRef={state.setSectionRef} search={state.searchQuery} />
+
+      <SumaryChangeService isFocused={state.isFocused} />
     </Page>
   );
 }
