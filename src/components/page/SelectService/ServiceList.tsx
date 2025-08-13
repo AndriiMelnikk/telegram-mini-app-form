@@ -6,16 +6,24 @@ import s from './style.module.scss';
 
 import { StatusReq } from '@/types';
 import useServices from './hocks/useServices';
-import { useSelectService } from '@/context/StorageKeyContext';
+import { useSelectServiceContext } from '@/context/StorageKeyContext';
+import useSelectService from '@/app/select-services/hooks/useSelectService';
+import { getSearchServices } from '@/app/select-services/hooks/getSearchServices';
+
 
 type Props = {
   setSectionRef: (id: string, el: HTMLDivElement | null) => void;
+  search?: string;
 }
 
-export default function ServiceList({ setSectionRef }: Props) {
-  const { services, status } = useServices();
+export default function ServiceList({ setSectionRef, search }: Props) {
+  const { status } = useServices();
 
-  const { value, setValue } = useSelectService();
+  const { cards } = useSelectService()
+
+  const { value, setValue } = useSelectServiceContext();
+
+  const cardsFiltered = getSearchServices(cards, search);
 
   if (status === StatusReq.pending) {
     return (
@@ -27,7 +35,7 @@ export default function ServiceList({ setSectionRef }: Props) {
 
   return (
     <div className={s.service_wrapper}>
-      <CardChangeBarber cards={services} setSelected={setValue} selected={value} setSectionRef={setSectionRef} />
+      <CardChangeBarber cards={cardsFiltered} setSelected={setValue} selected={value} setSectionRef={setSectionRef} />
     </div>
   );
 }

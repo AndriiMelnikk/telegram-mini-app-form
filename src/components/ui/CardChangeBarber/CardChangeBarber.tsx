@@ -29,11 +29,8 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
   }, [selected]);
 
   useEffect(() => {
-    setSelected(value);
+    setSelected(selected);
   }, [value]);
-
-
-
 
   return (
     <div className={s.app_wrapper} onClick={() => console.log('Card clicked')}>

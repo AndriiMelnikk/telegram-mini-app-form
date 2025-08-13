@@ -30,8 +30,8 @@ export default function SelectServicePage() {
         />
 
         <ServiceSearch
-          value={state.value}
-          setValue={state.setValue}
+          value={state.searchQuery}
+          setValue={state.setSearchQuery}
           isFocused={state.isFocused}
           setIsFocused={state.setIsFocused}
         />
@@ -40,7 +40,7 @@ export default function SelectServicePage() {
           <PremiumService />
         </div>
 
-        <ServiceList setSectionRef={state.setSectionRef} />
+        <ServiceList setSectionRef={state.setSectionRef}   search={state.searchQuery} />
 
         <SumaryChangeService isFocused={state.isFocused} />
       </SelectServiceProvider>

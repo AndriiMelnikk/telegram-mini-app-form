@@ -7,7 +7,6 @@ import s from './style.module.scss';
 export default function ServiceSearch({
   value,
   setValue,
-  isFocused,
   setIsFocused,
 }: {
   value: string;

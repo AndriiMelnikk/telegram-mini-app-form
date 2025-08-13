@@ -6,12 +6,12 @@ import { Button, Placeholder, Title } from '@telegram-apps/telegram-ui';
 import { IoIosClose } from 'react-icons/io';
 import { useGetAllJobs } from '../hocks/useGetAllJobs';
 import { formatMinutes } from '@/utils/formatMinutes';
-import { useSelectService } from '@/context/StorageKeyContext';
+import { useSelectServiceContext } from '@/context/StorageKeyContext';
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 
 
 export default function ContentModal() {
-  const { value, setValue } = useSelectService();
+  const { value, setValue } = useSelectServiceContext();
 
   const { totalService, filtered } = useSumaryChangeService(value);
   const selectJobs = useGetAllJobs(filtered)

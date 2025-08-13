@@ -30,7 +30,7 @@ export const SelectServiceProvider = ({ children }: { children: ReactNode }) => 
   );
 };
 
-export const useSelectService = () => {
+export const useSelectServiceContext = () => {
   const ctx = useContext(SelectServiceContext);
   if (!ctx) throw new Error('useSelectService must be used within SelectServiceProvider');
   return ctx;
