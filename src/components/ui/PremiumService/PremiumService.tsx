@@ -45,7 +45,7 @@ export default function PremiumService() {
               </IconContainer>
             }
           >
-            Спробуй нову преміум послугу "Догляд за обличчям"
+            Спробуй нову преміум послугу &quot;Догляд за обличчям&quot;
           </Cell>
         </Section>
       }
@@ -54,12 +54,12 @@ export default function PremiumService() {
         <Placeholder style={{ maxWidth: '590px' }}>
           <Image src={homeModalTitleImg} width={500} alt="Picture of the home modal" />
           <p>
-            <Text weight="3">Спробуй нову преміум послугу "Догляд за обличчям"</Text>
+            <Text weight="3">Спробуй нову преміум послугу &quot;Догляд за обличчям&quot;</Text>
           </p>
 
           <p>
             <Text weight="3">
-              Послуга "Догляд за обличчям" у Lumberjack Barberhouse створена для тих, хто прагне не
+              Послуга &quot;Догляд за обличчям&quot; у Lumberjack Barberhouse створена для тих, хто прагне не
               тільки виглядати бездоганно, а й відчути справжнє розслаблення та турботу. Це
               комплексний ритуал, який поєднує в собі ефективний догляд за шкірою та моменти
               релаксу.

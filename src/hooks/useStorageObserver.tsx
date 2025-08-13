@@ -20,5 +20,5 @@ export function useStorageObserver<K extends keyof typeof STORAGE_KEYS>(
         (cb) => cb !== callback
       );
     };
-  }, []);
+  }, [storageKey, callback]);
 }

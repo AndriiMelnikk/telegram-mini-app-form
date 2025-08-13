@@ -3,7 +3,7 @@ import { useFormContext } from '@/context/FormContext';
 import s from './form.module.scss';
 
 
-export default () => {
+const MyComponent = () => {
   return (
     <div className={s.form}>
       <FormInputs />
@@ -11,6 +11,8 @@ export default () => {
     </div>
   );
 }
+
+export default MyComponent
 
 function FormInputs() {
   const { values, errors, handleChange } = useFormContext();

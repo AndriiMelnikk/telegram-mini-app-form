@@ -15,7 +15,7 @@ export default function RecordDetails() {
       </div>
 
       <Section>
-        <Link href="/">
+        <Link href="/calendar">
           <Cell
             before={
               <IconContainer>
