@@ -1,6 +1,15 @@
-import { StatusReq } from "@/types";
+import { StatusReq } from '@/types';
 
-interface ServiceType {
+export type OriginalServiceType = {
+  name: string;
+  category: string;
+  description: string;
+  photo: string;
+  duration: number;
+  price: number;
+};
+
+export type ServiceType = {
   id: string;
   img: string;
   job: {
@@ -9,7 +18,7 @@ interface ServiceType {
     time: number;
     price: number;
   }[];
-}
+};
 
 export type initState = {
   status: StatusReq;
@@ -18,6 +27,5 @@ export type initState = {
 };
 
 export type ServerContextSetType = string[];
-
 
 export type DoGetServices = (dispatch: (partialState: Partial<initState>) => void) => void;

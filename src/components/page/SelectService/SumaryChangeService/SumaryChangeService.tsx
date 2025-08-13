@@ -6,19 +6,14 @@ import { useStorageKey } from '@/hooks/useLocalStorage';
 
 import { useStorageObserver } from '@/hooks/useStorageObserver';
 import { useState } from 'react';
-
+import useServices from '../hocks/useServices';
 
 type Props = {
   isFocused: boolean;
 };
 
 export default function SumaryChangeService({ isFocused }: Props) {
-
-
-  const { value: selectedServices } = useStorageKey(
-    'SELECT_SERVICE',
-    [] as string[]
-  );
+  const { value: selectedServices } = useStorageKey('SELECT_SERVICE', [] as string[]);
 
   const [selectedServ, setSelectedServ] = useState<string[]>(selectedServices);
 
@@ -26,11 +21,13 @@ export default function SumaryChangeService({ isFocused }: Props) {
     setSelectedServ(value ?? []);
   });
 
-  if (!selectedServ || selectedServ.length === 0 || isFocused) {
+  const { services } = useServices();
 
+  console.log(services);
+
+  if (!selectedServ || selectedServ.length === 0 || isFocused) {
     return <></>;
   }
-
 
   return (
     <div className={s.app_wrapper}>

@@ -2,13 +2,9 @@ import { useState, useEffect } from 'react';
 import { STORAGE_KEYS } from '@/types';
 import { notifyStorageSubscribers } from '@/utils/storageSubscribers';
 
-
 type Updater<T> = T | ((prev: T) => T);
 
-export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(
-  key: K,
-  initialValue: any
-) {
+export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initialValue: any) {
   const storageKey = STORAGE_KEYS[key];
 
   const [storedValue, setStoredValue] = useState(() => {

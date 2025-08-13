@@ -8,7 +8,7 @@ export default function ServiceSearch({
   value,
   setValue,
   isFocused,
-  setIsFocused
+  setIsFocused,
 }: {
   value: string;
   setValue: (v: string) => void;

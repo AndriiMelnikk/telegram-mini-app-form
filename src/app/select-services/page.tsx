@@ -15,7 +15,6 @@ export default function SelectServicePage() {
   const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-
   return (
     <Page back header>
       <Title level="2" weight="2">
@@ -24,7 +23,12 @@ export default function SelectServicePage() {
 
       <BarberTypeSelector />
 
-      <ServiceSearch value={value} setValue={setValue} isFocused={isFocused} setIsFocused={setIsFocused} />
+      <ServiceSearch
+        value={value}
+        setValue={setValue}
+        isFocused={isFocused}
+        setIsFocused={setIsFocused}
+      />
 
       <div className={s.premiumService_wrapper}>
         <PremiumService />

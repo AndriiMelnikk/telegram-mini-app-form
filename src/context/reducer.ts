@@ -1,51 +1,59 @@
 import { StatusReq } from '@/types';
-import { initState} from './type';
+import { initState, ServiceType, OriginalServiceType } from './type';
+import { transformServices } from '@/utils/transformServices';
 
-export const mock = [
+const mock: OriginalServiceType[] = [
   {
-    id: 'user_12345',
-    img: 'https://randomuser.me/api/portraits/men/75.jpg',
-    job: [
-      { id: 'job_001', title: 'Frontend Developer', time: 100, price: 3500 },
-      { id: 'job_002', title: 'Backend Developer', time: 95, price: 4000 },
-    ],
+    name: 'Service 1',
+    category: 'Молодший барбер',
+    description: 'Frontend Developer',
+    photo:
+      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
+    duration: 100,
+    price: 100,
   },
   {
-    id: 'user_98765',
-    img: 'https://randomuser.me/api/portraits/women/32.jpg',
-    job: [
-      { id: 'job_003', title: 'UI/UX Designer', time: 65, price: 2700 },
-      { id: 'job_004', title: 'Project Manager', time: 70, price: 5000 },
-    ],
+    name: 'Service 2',
+    category: 'Молодший барбер',
+    description: 'Backend Developer',
+    photo:
+      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
+    duration: 100,
+    price: 100,
   },
   {
-    id: 'user_54321',
-    img: 'https://randomuser.me/api/portraits/men/82.jpg',
-    job: [{ id: 'job_005', title: 'QA Engineer', time: 85, price: 3000 }],
+    name: 'Service 3',
+    category: 'Барбер',
+    description: 'UI/UX Designer',
+    photo:
+      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
+    duration: 100,
+    price: 100,
+  },
+  {
+    name: 'Service 4',
+    category: 'Додатково',
+    description: 'Project Manager',
+    photo:
+      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
+    duration: 100,
+    price: 100,
   },
 ];
 
-
 class Thunk {
+  async doGetServices(dispatch: (partialState: Partial<initState>) => void) {
+    dispatch({ status: StatusReq.pending });
 
+    const _services = transformServices(mock);
 
-async doGetServices(dispatch: (partialState: Partial<initState>) => void) {
-  const _services = mock;
-
-        dispatch({ status: StatusReq.pending });
-
-  console.log('Fetched services:', _services);
-
-  setTimeout(()=>{
-  dispatch({
-    services: _services,
-    status: StatusReq.resolved,
-  });
-  }, 2000)
-
-}
-
-
+    setTimeout(() => {
+      dispatch({
+        services: _services,
+        status: StatusReq.resolved,
+      });
+    }, 2000);
+  }
 }
 
 export default new Thunk();
