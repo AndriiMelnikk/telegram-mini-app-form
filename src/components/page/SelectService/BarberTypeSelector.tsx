@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, } from '@telegram-apps/telegram-ui';
+import { Button } from '@telegram-apps/telegram-ui';
 import s from './style.module.scss';
 import { ServiceType } from '@/context/type';
 import { useState } from 'react';
@@ -10,11 +10,7 @@ type Props = {
   setSelectedCategory: (id: string | null) => void;
 };
 
-export default function BarberTypeSelector({
-  services,
-  setSelectedCategory,
-}: Props) {
-
+export default function BarberTypeSelector({ services, setSelectedCategory }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleCategoryChange = (id: string) => {
@@ -24,7 +20,7 @@ export default function BarberTypeSelector({
 
   return (
     <div className={s.radio_wrapper}>
-      {services.map(service => (
+      {services.map((service) => (
         <Button
           key={service.id}
           size="s"
@@ -35,5 +31,5 @@ export default function BarberTypeSelector({
         </Button>
       ))}
     </div>
-  )
+  );
 }

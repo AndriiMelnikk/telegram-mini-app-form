@@ -1,15 +1,29 @@
+'use client';
+
 import { Page } from '@/components/Page';
 import NavigationCell from '@/components/page/Home/NavigationCell';
 import PremiumService from '@/components/ui/PremiumService';
 import { IoIosCalendar, IoIosList } from 'react-icons/io';
-import { Title, Headline, Section } from '@telegram-apps/telegram-ui';
+import { Title, Headline, Section, Spinner } from '@telegram-apps/telegram-ui';
 import s from './style.module.scss';
+import useInitState from '@/components/page/Home/hooks/useInitState';
+import { StatusReq } from '@/types';
 
 export default function HomePage() {
+
+  const { titles, status } = useInitState();
+
+  if (status === StatusReq.pending) {
+    return (
+      <div className={s.spinner_wrapper}>
+        <Spinner size="l" />
+      </div>
+    );
+  }
   return (
     <Page back={false}>
       <div className={s.app_wrapper}>
-        <Header />
+        <Header titles={titles} />
         <PremiumService />
         <Navigation />
       </div>
@@ -17,13 +31,13 @@ export default function HomePage() {
   );
 }
 
-function Header() {
+function Header({ titles }: { titles: { title: string; subtitle: string } }) {
   return (
     <div>
       <Title level="1" weight="3">
-        Lumberjack Soloma
+        {titles.title}
       </Title>
-      <Headline weight="3">проспект Повітряних Сил, 44</Headline>
+      <Headline weight="3">{titles.subtitle}</Headline>
     </div>
   );
 }

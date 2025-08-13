@@ -25,6 +25,10 @@ export type JobType = {
 
 export type initState = {
   status: StatusReq;
+  titles: {
+    title: string;
+    subtitle: string;
+  };
   services: ServiceType[];
   error: string | null;
 };

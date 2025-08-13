@@ -11,12 +11,13 @@
 }
 
 .radio_wrapper {
- display: flex; gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .search_wrapper {
   > div {
-    padding:  20px 0 20px;
+    padding: 20px 0 20px;
     background: none;
   }
 }

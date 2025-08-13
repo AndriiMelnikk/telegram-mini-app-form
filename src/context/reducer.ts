@@ -41,6 +41,16 @@ const mock: OriginalServiceType[] = [
   },
 ];
 
+const data = {
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MDEyNzQwNCIsImV4cCI6MTc1NzY4MTU2N30.Ap_GTEAdRzkcBatxEW4_NcNDcvVUBB6T5_ewTClMdQ0',
+  data: {
+    title: 'Master CRM',
+    title2: 'Master CRM - Address',
+    services: mock,
+  },
+};
+
 class Thunk {
   async doGetServices(dispatch: (partialState: Partial<initState>) => void) {
     dispatch({ status: StatusReq.pending });
@@ -49,6 +59,10 @@ class Thunk {
 
     setTimeout(() => {
       dispatch({
+        titles: {
+          title: data.data.title,
+          subtitle: data.data.title2,
+        },
         services: _services,
         status: StatusReq.resolved,
       });

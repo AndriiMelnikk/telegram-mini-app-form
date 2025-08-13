@@ -1,5 +1,5 @@
 import { filterServicesByJobIds } from '@/utils/filterServicesByJobIds';
-import useServices from './useServices';
+import useServices from '../../Home/hooks/useInitState';
 import { getServiceSummary } from '../SumaryChangeService/hooks/getServiceSummary';
 
 export function useSumaryChangeService(selectedServices: string[]) {

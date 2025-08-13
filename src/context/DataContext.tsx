@@ -29,6 +29,10 @@ const useDataDispatch = () => {
 
 const initialState: initState = {
   status: StatusReq.idle,
+  titles: {
+    title: '',
+    subtitle: '',
+  },
   services: [],
   error: null,
 };

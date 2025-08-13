@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
 import { doGetServices, useDataDispatch, useDataState } from '@/context/DataContext';
 
-function useServices() {
-  const { services, status } = useDataState();
+function useInitState() {
+  const { services, status, titles } = useDataState();
   const dispatch = useDataDispatch();
 
   useEffect(() => {
     if (!services || services.length === 0) {
       doGetServices(dispatch);
-      console.log('useServices: Fetching services');
     } else {
-      console.log('useServices: Services already loaded');
+      console.log('useInitState: Services already loaded');
     }
-  }, [services, dispatch]);
+  }, [dispatch]);
 
-  return { services, status };
+  return { services, status, titles };
 }
 
-export default useServices;
+export default useInitState;
