@@ -4,15 +4,21 @@ import CallCastom from '@/components/ui/CallCastom';
 
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 import ModalChoseServise from '../ModalChoseServise';
+import { useSelectService } from '@/context/StorageKeyContext';
 
 type Props = {
   isFocused: boolean;
 };
 
 export default function SumaryChangeService({ isFocused }: Props) {
-  const { selectedServ, totalService, services } = useSumaryChangeService();
 
-  if (!selectedServ.length || isFocused || !services.length) return null;
+  const { value } = useSelectService();
+
+  const { totalService, services } = useSumaryChangeService(value);
+
+  console.log(value)
+
+  if (!value.length || isFocused || !services.length) return null;
 
   return (
     <div className={s.app_wrapper}>

@@ -28,6 +28,13 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
     setValue(selected);
   }, [selected]);
 
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+
+
+
   return (
     <div className={s.app_wrapper} onClick={() => console.log('Card clicked')}>
       {cards.map((card) => {

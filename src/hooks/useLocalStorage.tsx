@@ -4,10 +4,10 @@ import { notifyStorageSubscribers } from '@/utils/storageSubscribers';
 
 type Updater<T> = T | ((prev: T) => T);
 
-export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initialValue: any) {
+export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initialValue: string[]) {
   const storageKey = STORAGE_KEYS[key];
 
-  const [storedValue, setStoredValue] = useState(() => {
+  const [storedValue, setStoredValue]: [string[], (value: Updater<string[]>) => void] = useState(() => {
     if (typeof window === 'undefined') return initialValue;
     try {
       const item = localStorage.getItem(storageKey);

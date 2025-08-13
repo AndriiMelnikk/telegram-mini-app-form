@@ -9,7 +9,7 @@ export default function useSelectService() {
     const [isFocused, setIsFocused] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-    const { services, status } = useServices();
+    const { services, status,  } = useServices();
     const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
     const setSectionRef = useCallback((id: string, el: HTMLDivElement | null) => {

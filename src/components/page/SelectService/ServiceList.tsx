@@ -1,12 +1,12 @@
 'use client';
 
-import { Spinner, Title } from '@telegram-apps/telegram-ui';
+import { Spinner } from '@telegram-apps/telegram-ui';
 import CardChangeBarber from '@/components/ui/CardChangeBarber';
 import s from './style.module.scss';
 
 import { StatusReq } from '@/types';
 import useServices from './hocks/useServices';
-import { useStorageKey } from '@/hooks/useLocalStorage';
+import { useSelectService } from '@/context/StorageKeyContext';
 
 type Props = {
   setSectionRef: (id: string, el: HTMLDivElement | null) => void;
@@ -14,7 +14,8 @@ type Props = {
 
 export default function ServiceList({ setSectionRef }: Props) {
   const { services, status } = useServices();
-  const { setValue, value: selectedServices } = useStorageKey('SELECT_SERVICE', [] as string[]);
+
+  const { value, setValue } = useSelectService();
 
   if (status === StatusReq.pending) {
     return (
@@ -26,7 +27,7 @@ export default function ServiceList({ setSectionRef }: Props) {
 
   return (
     <div className={s.service_wrapper}>
-      <CardChangeBarber cards={services} setSelected={setValue} selected={selectedServices} setSectionRef={setSectionRef} />
+      <CardChangeBarber cards={services} setSelected={setValue} selected={value} setSectionRef={setSectionRef} />
     </div>
   );
 }

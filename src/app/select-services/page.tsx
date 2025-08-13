@@ -9,6 +9,8 @@ import SumaryChangeService from '@/components/page/SelectService/SumaryChangeSer
 import useSelectService from './hooks/useSelectService';
 
 import s from './style.module.scss';
+import { SelectServiceProvider } from '@/context/StorageKeyContext';
+
 
 export default function SelectServicePage() {
 
@@ -16,30 +18,32 @@ export default function SelectServicePage() {
 
   return (
     <Page back header>
-      <Title level="2" weight="2">
-        Вибір послуг
-      </Title>
+      <SelectServiceProvider>
+        <Title level="2" weight="2">
+          Вибір послуг
+        </Title>
 
-      <BarberTypeSelector
-        services={state.services}
-        selectedCategory={state.selectedCategory}
-        setSelectedCategory={state.setSelectedCategory}
-      />
+        <BarberTypeSelector
+          services={state.services}
+          selectedCategory={state.selectedCategory}
+          setSelectedCategory={state.setSelectedCategory}
+        />
 
-      <ServiceSearch
-        value={state.value}
-        setValue={state.setValue}
-        isFocused={state.isFocused}
-        setIsFocused={state.setIsFocused}
-      />
+        <ServiceSearch
+          value={state.value}
+          setValue={state.setValue}
+          isFocused={state.isFocused}
+          setIsFocused={state.setIsFocused}
+        />
 
-      <div className={s.premiumService_wrapper}>
-        <PremiumService />
-      </div>
+        <div className={s.premiumService_wrapper}>
+          <PremiumService />
+        </div>
 
-      <ServiceList setSectionRef={state.setSectionRef} />
+        <ServiceList setSectionRef={state.setSectionRef} />
 
-      <SumaryChangeService isFocused={state.isFocused} />
+        <SumaryChangeService isFocused={state.isFocused} />
+      </SelectServiceProvider>
     </Page>
   );
 }

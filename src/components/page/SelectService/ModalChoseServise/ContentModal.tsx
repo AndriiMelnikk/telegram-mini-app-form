@@ -1,20 +1,31 @@
 import CallCastom from '@/components/ui/CallCastom';
 import s from './modalChoseServise.module.scss';
 
-import { Button, Placeholder, Text, Title } from '@telegram-apps/telegram-ui';
+import { Button, Placeholder, Title } from '@telegram-apps/telegram-ui';
 
 import { IoIosClose } from 'react-icons/io';
-import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 import { useGetAllJobs } from '../hocks/useGetAllJobs';
 import { formatMinutes } from '@/utils/formatMinutes';
+import { useSelectService } from '@/context/StorageKeyContext';
+import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
+
 
 export default function ContentModal() {
+  const { value, setValue } = useSelectService();
 
-
-  const { totalService, filtered } = useSumaryChangeService();
-
+  const { totalService, filtered } = useSumaryChangeService(value);
   const selectJobs = useGetAllJobs(filtered)
 
+  console.log('fafasdafsf jobs:', value)
+
+  const handleRemoveJob = (id: string) => {
+    const filteredJob = value.filter(job => job !== id);
+    console.log('Filtered jobs:', filteredJob);
+
+    setValue(filteredJob);
+  }
+
+  if (!selectJobs.length) return null;
 
   return (
     <div className={s.placeholder_wrapper}>
@@ -34,7 +45,7 @@ export default function ContentModal() {
             key={job.id}
             leftNode={job.title}
             leftText={formatMinutes(job.time)}
-            rightNode={<IoIosClose />}
+            rightNode={<IoIosClose onClick={() => handleRemoveJob(job.id)} />}
           />
         ))}
 
