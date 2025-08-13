@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { STORAGE_KEYS } from '@/types';
+import { notifyStorageSubscribers } from '@/utils/storageSubscribers';
+
 
 type Updater<T> = T | ((prev: T) => T);
 
-
-export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initialValue: any) {
+export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(
+  key: K,
+  initialValue: any
+) {
   const storageKey = STORAGE_KEYS[key];
 
   const [storedValue, setStoredValue] = useState(() => {
@@ -23,19 +27,18 @@ export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initi
       const valueToStore = value instanceof Function ? value(storedValue) : value;
 
       let finalValue;
-
       if (merge) {
         if (Array.isArray(storedValue) && Array.isArray(valueToStore)) {
-          finalValue = [...storedValue, ...valueToStore]; // для масивів
+          finalValue = [...storedValue, ...valueToStore];
         } else if (
           typeof storedValue === 'object' &&
           storedValue !== null &&
           typeof valueToStore === 'object' &&
           valueToStore !== null
         ) {
-          finalValue = { ...storedValue, ...valueToStore }; // для обʼєктів
+          finalValue = { ...storedValue, ...valueToStore };
         } else {
-          finalValue = valueToStore; // для примітивів
+          finalValue = valueToStore;
         }
       } else {
         finalValue = valueToStore;
@@ -43,6 +46,8 @@ export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initi
 
       setStoredValue(finalValue);
       localStorage.setItem(storageKey, JSON.stringify(finalValue));
+
+      notifyStorageSubscribers(storageKey, finalValue);
     } catch (error) {
       console.error('Error setting localStorage key', storageKey, error);
     }
@@ -50,8 +55,10 @@ export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initi
 
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === storageKey && event.newValue) {
-        setStoredValue(JSON.parse(event.newValue));
+      if (event.key === storageKey) {
+        const newValue = event.newValue ? JSON.parse(event.newValue) : null;
+        setStoredValue(newValue);
+        notifyStorageSubscribers(storageKey, newValue);
       }
     };
     window.addEventListener('storage', handleStorageChange);

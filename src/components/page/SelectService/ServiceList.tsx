@@ -7,7 +7,7 @@ import s from './style.module.scss';
 
 import { StatusReq } from '@/types';
 import useServices from './hocks/useServices';
-import { useStorageKey } from '@/types/useLocalStorage';
+import { useStorageKey } from '@/hooks/useLocalStorage';
 
 
 export default function ServiceList() {
@@ -16,8 +16,6 @@ export default function ServiceList() {
     'SELECT_SERVICE',
     [] as string[]
   );
-
-  // const setValue = () => ''
 
   if (status === StatusReq.pending) {
     return <div className={s.spinner_wrapper}>
@@ -30,7 +28,7 @@ export default function ServiceList() {
       <Title level="3" weight="2">
         Молодший барбер
       </Title>
-      <CardChangeBarber cards={services} setSelected={setValue}  selected={selectedServices}/>
+      <CardChangeBarber cards={services} setSelected={setValue} selected={selectedServices} />
     </div>
   );
 }
