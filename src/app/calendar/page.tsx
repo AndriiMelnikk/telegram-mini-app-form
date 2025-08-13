@@ -8,6 +8,7 @@ import Calendar from '@/components/ui/Calendar';
 import { ThemeProvider } from '@emotion/react';
 import { miniApp, useSignal } from '@telegram-apps/sdk-react';
 import { darkTheme, lightTheme } from '@/components/ui/Calendar/theme';
+import ChangeTime from './ChangeTime';
 
 export default function Home() {
     const { status } = useInitState();
@@ -24,6 +25,7 @@ export default function Home() {
                 <Calendar />
             </ThemeProvider>
 
+            <ChangeTime />
         </Page>
 
     );
