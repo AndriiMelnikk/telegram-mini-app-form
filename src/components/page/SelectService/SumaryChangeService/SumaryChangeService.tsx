@@ -4,8 +4,9 @@ import CallCastom from '@/components/ui/CallCastom';
 
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 import ModalChoseServise from '../ModalChoseServise';
-import createStorageContext from '@/context/createStorageContext';
 import { useSelectServiceContext } from '@/context/SelectServiceContext';
+import { useTimeServiceContext } from '@/context/TimeServiceContext';
+import Link from 'next/link';
 
 type Props = {
   isFocused: boolean;
@@ -13,6 +14,8 @@ type Props = {
 
 export default function SumaryChangeService({ isFocused }: Props) {
   const { value } = useSelectServiceContext();
+  const { value: timeServiceValue } = useTimeServiceContext();
+
 
 
   const { totalService, services } = useSumaryChangeService(value);
@@ -28,11 +31,19 @@ export default function SumaryChangeService({ isFocused }: Props) {
         rightNode={<ModalChoseServise />}
         rightText={`${totalService.totalPrice} ₴`}
       />
-      <div className={s.btn_wrapper}>
-        <Button mode="filled" size="s">
-          Вибрати дату та час
-        </Button>
-      </div>
+
+      <Link href={
+        timeServiceValue.time && timeServiceValue.date ? "/send-form" : "/calendar"
+      }>
+        <div className={s.btn_wrapper}>
+          <Button mode="filled" size="s">
+
+            {timeServiceValue.time && timeServiceValue.date ? "Завершити запис" : "Обрати дату"}
+          </Button>
+        </div>
+      </Link>
+
+
     </div>
   );
 }

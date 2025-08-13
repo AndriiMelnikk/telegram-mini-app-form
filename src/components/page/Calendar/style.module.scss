@@ -1,0 +1,17 @@
+.app_wrapper {
+  background: var(--tgui--tertiary_bg_color);
+  position: sticky;
+  bottom: 0;
+  left: 0px;
+  height: 70px;
+  padding: 20px 20px 0 20px;
+  margin-left: -20px;
+  width: calc(100% + 40px);
+}
+
+.btn_wrapper {
+  > button {
+    width: 100%;
+    border-radius: 5px;
+  }
+}

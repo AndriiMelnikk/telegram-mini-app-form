@@ -6,6 +6,7 @@ import { StatusReq } from '@/types';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 import ChangeTime from './ChangeTime';
 import CalendarBlock from './Calendar';
+import NextStep from '@/components/page/Calendar/NextStep';
 
 export default function Home() {
     const { status } = useInitState();
@@ -20,6 +21,7 @@ export default function Home() {
         <Page back header>
             <CalendarBlock />
             <ChangeTime />
+            <NextStep />
         </Page>
 
     );

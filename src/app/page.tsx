@@ -47,9 +47,6 @@ function Navigation() {
       <NavigationCell href="/select-services" icon={<IoIosList />}>
         Вибрати послугу
       </NavigationCell>
-      <NavigationCell href="/send-form" icon={<IoIosList />}>
-        Форма замовлення
-      </NavigationCell>
     </Section>
   );
 }
