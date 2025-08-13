@@ -1,17 +1,26 @@
 'use client';
 
-import s from './style.module.scss';
+
 
 import { Page } from '@/components/Page';
 import RecordDetails from './components/RecordDetails';
-import Form from './components/Form';
-import { Button, Cell, Section } from '@telegram-apps/telegram-ui';
+import { Cell, Section } from '@telegram-apps/telegram-ui';
 import SpinnerCopmonent from '@/components/ui/Spiner';
 import { StatusReq } from '@/types';
 import useInitState from '@/components/page/Home/hooks/useInitState';
+import { useSumaryChangeService } from '@/components/page/SelectService/hocks/useSumaryChangeService';
+import { useSelectServiceContext } from '@/context/SelectService';
+
+import Send from './components/Send';
+import { FormProvider } from '@/context/FormContext';
+import Form from './components/Form';
 
 export default function Home() {
   const { status } = useInitState();
+
+  const { value } = useSelectServiceContext();
+
+  const { totalService } = useSumaryChangeService(value);
 
   if (status === StatusReq.pending) {
     return <SpinnerCopmonent page />;
@@ -19,20 +28,21 @@ export default function Home() {
 
   return (
     <Page back header>
-      <RecordDetails />
-      <Form />
+      <FormProvider>
+        <RecordDetails />
 
-      <Section>
-        <Cell after="500 ₴" hovered>
-          Всього
-        </Cell>
-      </Section>
+        <Form />
 
-      <div className={s.button_wrapper}>
-        <Button mode="filled" size="s">
-          Записатись
-        </Button>
-      </div>
+        <Section>
+          <Cell after={`${totalService.totalPrice} ₴`} hovered>
+            Всього
+          </Cell>
+        </Section>
+
+        <Send />
+
+      </FormProvider >
     </Page>
+
   );
 }
