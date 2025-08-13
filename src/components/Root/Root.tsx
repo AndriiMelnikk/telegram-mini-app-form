@@ -12,6 +12,8 @@ import { SelectServiceProvider } from '@/context/SelectService';
 
 import './styles.css';
 import { DataProvider } from '@/context/DataContext';
+import { ThemeProvider } from '@emotion/react';
+import { darkTheme, lightTheme } from '../ui/Calendar/theme';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -29,6 +31,7 @@ function RootInner({ children }: PropsWithChildren) {
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
       className="root"
     >
+
       <DataProvider>
         <SelectServiceProvider>
           <List
@@ -42,6 +45,7 @@ function RootInner({ children }: PropsWithChildren) {
           </List>
         </SelectServiceProvider>
       </DataProvider>
+
     </AppRoot>
   );
 }
