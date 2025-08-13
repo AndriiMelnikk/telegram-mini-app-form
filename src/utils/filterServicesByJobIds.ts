@@ -1,5 +1,4 @@
-import { ServiceType } from "@/context/type";
-
+import { ServiceType } from '@/context/type';
 
 /**
  * Фільтрує масив сервісів, залишаючи тільки jobs, де id співпадає з jobIdsToKeep
@@ -7,14 +6,14 @@ import { ServiceType } from "@/context/type";
  * @param jobIdsToKeep - масив id jobs, які треба залишити
  * @returns новий масив ServiceType з відфільтрованими jobs
  */
- export function filterServicesByJobIds(
+export function filterServicesByJobIds(
   services: ServiceType[],
   jobIdsToKeep: string[]
 ): ServiceType[] {
   return services
-    .map(service => ({
+    .map((service) => ({
       ...service,
-      job: service.job.filter(job => jobIdsToKeep.includes(job.id)),
+      job: service.job.filter((job) => jobIdsToKeep.includes(job.id)),
     }))
-    .filter(service => service.job.length > 0);
+    .filter((service) => service.job.length > 0);
 }

@@ -8,7 +8,9 @@ type StorageKeyContextType<T> = {
   setValue: (val: T) => void;
 };
 
-export const SelectServiceContext = createContext<StorageKeyContextType<string[]> | undefined>(undefined);
+export const SelectServiceContext = createContext<StorageKeyContextType<string[]> | undefined>(
+  undefined
+);
 
 export const SelectServiceProvider = ({ children }: { children: ReactNode }) => {
   const [value, setValue] = useState<string[]>(() => {

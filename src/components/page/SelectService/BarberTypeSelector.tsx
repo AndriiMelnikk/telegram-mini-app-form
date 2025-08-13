@@ -8,11 +8,13 @@ type Props = {
   services: ServiceType[];
   selectedCategory: string | null;
   setSelectedCategory: (id: string | null) => void;
-}
+};
 
-export default function BarberTypeSelector({ services, selectedCategory, setSelectedCategory }: Props) {
-
-
+export default function BarberTypeSelector({
+  services,
+  selectedCategory,
+  setSelectedCategory,
+}: Props) {
   return (
     <div className={s.radio_wrapper}>
       {services.map((service, index) => (

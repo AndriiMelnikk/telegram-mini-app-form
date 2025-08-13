@@ -13,7 +13,7 @@ export function transformServices(services: OriginalServiceType[]): ServiceType[
       }
 
       acc[service.category].job.push({
-       id: '', 
+        id: '',
         title: service.name,
         time: service.duration,
         price: service.price,
@@ -26,11 +26,10 @@ export function transformServices(services: OriginalServiceType[]): ServiceType[
 
   let jobCounter = 0;
 
-
   return Object.values(grouped).map((service, catIndex) => {
-    const newJobs = service.job.map(job => ({
+    const newJobs = service.job.map((job) => ({
       ...job,
-      id: `job_${jobCounter++}`, 
+      id: `job_${jobCounter++}`,
     }));
 
     return {

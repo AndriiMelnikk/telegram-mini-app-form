@@ -1,13 +1,12 @@
-import { JobType, ServiceType } from "@/context/type";
+import { JobType, ServiceType } from '@/context/type';
 
 export function useGetAllJobs(arr: ServiceType[]) {
-    
-    const initValue: JobType[] = []
+  const initValue: JobType[] = [];
 
-    arr.reduce((acc, value, index) => {
-        acc.push(...value.job);
-        return acc;
-    }, initValue);
+  arr.reduce((acc, value, index) => {
+    acc.push(...value.job);
+    return acc;
+  }, initValue);
 
   return initValue;
 }

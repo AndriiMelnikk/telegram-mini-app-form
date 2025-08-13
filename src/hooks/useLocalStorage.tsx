@@ -7,16 +7,18 @@ type Updater<T> = T | ((prev: T) => T);
 export function useStorageKey<K extends keyof typeof STORAGE_KEYS>(key: K, initialValue: string[]) {
   const storageKey = STORAGE_KEYS[key];
 
-  const [storedValue, setStoredValue]: [string[], (value: Updater<string[]>) => void] = useState(() => {
-    if (typeof window === 'undefined') return initialValue;
-    try {
-      const item = localStorage.getItem(storageKey);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error('Error reading localStorage key', storageKey, error);
-      return initialValue;
+  const [storedValue, setStoredValue]: [string[], (value: Updater<string[]>) => void] = useState(
+    () => {
+      if (typeof window === 'undefined') return initialValue;
+      try {
+        const item = localStorage.getItem(storageKey);
+        return item ? JSON.parse(item) : initialValue;
+      } catch (error) {
+        console.error('Error reading localStorage key', storageKey, error);
+        return initialValue;
+      }
     }
-  });
+  );
 
   const setValue = (value: Updater<any>, merge = false) => {
     try {

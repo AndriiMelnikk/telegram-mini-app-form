@@ -9,21 +9,16 @@ import { formatMinutes } from '@/utils/formatMinutes';
 import { useSelectServiceContext } from '@/context/StorageKeyContext';
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 
-
 export default function ContentModal() {
   const { value, setValue } = useSelectServiceContext();
 
   const { totalService, filtered } = useSumaryChangeService(value);
-  const selectJobs = useGetAllJobs(filtered)
-
-  console.log('fafasdafsf jobs:', value)
+  const selectJobs = useGetAllJobs(filtered);
 
   const handleRemoveJob = (id: string) => {
-    const filteredJob = value.filter(job => job !== id);
-    console.log('Filtered jobs:', filteredJob);
-
+    const filteredJob = value.filter((job) => job !== id);
     setValue(filteredJob);
-  }
+  };
 
   if (!selectJobs.length) return null;
 
@@ -40,7 +35,7 @@ export default function ContentModal() {
           rightText={`${totalService.totalPrice} ₴`}
         />
 
-        {selectJobs.map(job => (
+        {selectJobs.map((job) => (
           <CallCastom
             key={job.id}
             leftNode={job.title}

@@ -6,7 +6,6 @@ function useServices() {
   const dispatch = useDataDispatch();
 
   useEffect(() => {
-
     if (!services || services.length === 0) {
       doGetServices(dispatch);
       console.log('useServices: Fetching services');

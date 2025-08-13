@@ -11,12 +11,11 @@ type Props = {
 };
 
 export default function SumaryChangeService({ isFocused }: Props) {
-
   const { value } = useSelectServiceContext();
 
   const { totalService, services } = useSumaryChangeService(value);
 
-  console.log(value)
+  console.log(value);
 
   if (!value.length || isFocused || !services.length) return null;
 

@@ -10,18 +10,15 @@ import { useSelectServiceContext } from '@/context/StorageKeyContext';
 import useSelectService from '@/app/select-services/hooks/useSelectService';
 import { getSearchServices } from '@/app/select-services/hooks/getSearchServices';
 
-
 type Props = {
   setSectionRef: (id: string, el: HTMLDivElement | null) => void;
   search?: string;
-}
+};
 
 export default function ServiceList({ setSectionRef, search }: Props) {
   const { status } = useServices();
 
-  const { cards } = useSelectService()
-
-  const { value, setValue } = useSelectServiceContext();
+  const { cards } = useSelectService();
 
   const cardsFiltered = getSearchServices(cards, search);
 
@@ -35,7 +32,7 @@ export default function ServiceList({ setSectionRef, search }: Props) {
 
   return (
     <div className={s.service_wrapper}>
-      <CardChangeBarber cards={cardsFiltered} setSelected={setValue} selected={value} setSectionRef={setSectionRef} />
+      <CardChangeBarber cards={cardsFiltered} setSectionRef={setSectionRef} />
     </div>
   );
 }

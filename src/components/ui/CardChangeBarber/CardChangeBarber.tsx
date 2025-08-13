@@ -7,15 +7,15 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { formatMinutes } from '@/utils/formatMinutes';
 import { ServiceType } from '@/context/type';
+import { useSelectServiceContext } from '@/context/StorageKeyContext';
 
 type Props = {
   cards: ServiceType[];
-  setSelected: (value: any, merge?: boolean) => void;
-  selected: string[];
   setSectionRef: (id: string, el: HTMLDivElement | null) => void;
 };
 
-export default function CardChangeBarber({ cards, setSelected: setValue, selected: value, setSectionRef }: Props) {
+export default function CardChangeBarber({ cards, setSectionRef }: Props) {
+  const { value, setValue } = useSelectServiceContext();
   const [selected, setSelected] = useState<string[]>(value);
 
   const toggleCheckbox = (value: string) => {
@@ -25,12 +25,14 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
   };
 
   useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+  useEffect(() => {
     setValue(selected);
   }, [selected]);
 
-  useEffect(() => {
-    setSelected(selected);
-  }, [value]);
+  console.log('value:', value, selected);
 
   return (
     <div className={s.app_wrapper} onClick={() => console.log('Card clicked')}>

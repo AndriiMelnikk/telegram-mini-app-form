@@ -11,9 +11,7 @@ import useSelectService from './hooks/useSelectService';
 import s from './style.module.scss';
 import { SelectServiceProvider } from '@/context/StorageKeyContext';
 
-
 export default function SelectServicePage() {
-
   const state = useSelectService();
 
   return (
@@ -40,7 +38,7 @@ export default function SelectServicePage() {
           <PremiumService />
         </div>
 
-        <ServiceList setSectionRef={state.setSectionRef}   search={state.searchQuery} />
+        <ServiceList setSectionRef={state.setSectionRef} search={state.searchQuery} />
 
         <SumaryChangeService isFocused={state.isFocused} />
       </SelectServiceProvider>
