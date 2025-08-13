@@ -4,8 +4,15 @@ import { IoIosCalendar } from 'react-icons/io';
 import { MdChevronRight } from 'react-icons/md';
 import ServiceCoponent from './ServiceCopmonent';
 import Link from 'next/link';
+import { useTimeServiceContext } from '@/context/TimeServiceContext';
+import { add30Minutes } from '@/utils/add30minutes';
+import { formatDateUA } from '@/utils/formatDateUA';
 
 export default function RecordDetails() {
+
+  const { value } = useTimeServiceContext();
+
+  const endTime = add30Minutes(value.time || "00:00");
   return (
     <div className={s.app_wrapper}>
       <div className={s.title_wrapper}>
@@ -27,9 +34,9 @@ export default function RecordDetails() {
                 <MdChevronRight />
               </IconContainer>
             }
-            description="12:00-12:30"
+            description={<>{value.time || "00:00"} - {endTime}</>}
           >
-            Четвер, 28 серпня
+            <>{formatDateUA(value.date || "")}</>
           </Cell>
         </Link>
       </Section>
