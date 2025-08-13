@@ -23,7 +23,6 @@ export default function SelectServicePage() {
 
         <BarberTypeSelector
           services={state.services}
-          selectedCategory={state.selectedCategory}
           setSelectedCategory={state.setSelectedCategory}
         />
 
