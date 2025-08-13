@@ -2,19 +2,16 @@
 
 import { Cell, Radio } from '@telegram-apps/telegram-ui';
 import s from './style.module.scss';
-import useServices from './hocks/useServices';
-import { useEffect, useState } from 'react';
+import { ServiceType } from '@/context/type';
 
-export default function BarberTypeSelector() {
-  const { services } = useServices();
+type Props = {
+  services: ServiceType[];
+  selectedCategory: string | null;
+  setSelectedCategory: (id: string | null) => void;
+}
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+export default function BarberTypeSelector({ services, selectedCategory, setSelectedCategory }: Props) {
 
-  useEffect(() => {
-    if (services.length > 0 && selectedCategory === null) {
-      setSelectedCategory(services[0].id);
-    }
-  }, [services]);
 
   return (
     <div className={s.radio_wrapper}>

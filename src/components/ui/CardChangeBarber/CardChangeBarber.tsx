@@ -12,9 +12,10 @@ type Props = {
   cards: ServiceType[];
   setSelected: (value: any, merge?: boolean) => void;
   selected: string[];
+  setSectionRef: (id: string, el: HTMLDivElement | null) => void;
 };
 
-export default function CardChangeBarber({ cards, setSelected: setValue, selected: value }: Props) {
+export default function CardChangeBarber({ cards, setSelected: setValue, selected: value, setSectionRef }: Props) {
   const [selected, setSelected] = useState<string[]>(value);
 
   const toggleCheckbox = (value: string) => {
@@ -31,7 +32,7 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
     <div className={s.app_wrapper} onClick={() => console.log('Card clicked')}>
       {cards.map((card) => {
         return (
-          <div key={card.id}>
+          <div key={card.id} ref={(el) => setSectionRef(card.id, el)}>
             <Title level="3" weight="2" className={s.title}>
               {card.id}
             </Title>

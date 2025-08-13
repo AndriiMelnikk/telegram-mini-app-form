@@ -4,7 +4,6 @@ import { backButton } from '@telegram-apps/sdk-react';
 import { PropsWithChildren, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HeaderPage from './ui/HeaderPage';
-import { DataProvider } from '@/context/DataContext';
 
 export function Page({
   children,
@@ -35,7 +34,7 @@ export function Page({
   }, [router]);
 
   return (
-    <DataProvider>
+    <>
       {header ? (
         <>
           <HeaderPage />
@@ -44,6 +43,6 @@ export function Page({
       ) : (
         children
       )}
-    </DataProvider>
+    </>
   );
 }

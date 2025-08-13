@@ -10,6 +10,7 @@ import { useDidMount } from '@/hooks/useDidMount';
 import { setLocale } from '@/core/i18n/locale';
 
 import './styles.css';
+import { DataProvider } from '@/context/DataContext';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -27,15 +28,17 @@ function RootInner({ children }: PropsWithChildren) {
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
       className="root"
     >
-      <List
-        style={{
-          background: 'var(--tgui--secondary_bg_color)',
-          padding: '0 20px',
-          minHeight: '100vh',
-        }}
-      >
-        {children}
-      </List>
+      <DataProvider>
+        <List
+          style={{
+            background: 'var(--tgui--secondary_bg_color)',
+            padding: '0 20px',
+            minHeight: '100vh',
+          }}
+        >
+          {children}
+        </List>
+      </DataProvider>
     </AppRoot>
   );
 }

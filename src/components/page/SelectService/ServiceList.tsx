@@ -8,7 +8,11 @@ import { StatusReq } from '@/types';
 import useServices from './hocks/useServices';
 import { useStorageKey } from '@/hooks/useLocalStorage';
 
-export default function ServiceList() {
+type Props = {
+  setSectionRef: (id: string, el: HTMLDivElement | null) => void;
+}
+
+export default function ServiceList({ setSectionRef }: Props) {
   const { services, status } = useServices();
   const { setValue, value: selectedServices } = useStorageKey('SELECT_SERVICE', [] as string[]);
 
@@ -22,7 +26,7 @@ export default function ServiceList() {
 
   return (
     <div className={s.service_wrapper}>
-      <CardChangeBarber cards={services} setSelected={setValue} selected={selectedServices} />
+      <CardChangeBarber cards={services} setSelected={setValue} selected={selectedServices} setSectionRef={setSectionRef} />
     </div>
   );
 }
