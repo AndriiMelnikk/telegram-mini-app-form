@@ -3,7 +3,7 @@ import s from './modalChoseServise.module.scss';
 import { ModalHeader } from '@telegram-apps/telegram-ui/dist/components/Overlays/Modal/components/ModalHeader/ModalHeader';
 import { ModalClose } from '@telegram-apps/telegram-ui/dist/components/Overlays/Modal/components/ModalClose/ModalClose';
 import { IoIosClose } from 'react-icons/io';
-import { Modal } from '@telegram-apps/telegram-ui';
+import { Modal, VisuallyHidden } from '@telegram-apps/telegram-ui';
 import { FaPen } from 'react-icons/fa';
 import ContentModal from './ContentModal';
 
@@ -23,6 +23,10 @@ export default function PremiumService() {
       }
       trigger={<FaPen className={s.pen_svg} />}
     >
+      <VisuallyHidden>
+        <h2>Вибір послуги</h2>
+      </VisuallyHidden>
+
       <ContentModal />
     </Modal>
   );

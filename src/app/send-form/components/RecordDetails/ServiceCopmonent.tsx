@@ -7,8 +7,8 @@ import CallCastom from '@/components/ui/CallCastom';
 import { FaPen } from 'react-icons/fa';
 import { useSumaryChangeService } from '@/components/page/SelectService/hocks/useSumaryChangeService';
 import { useGetAllJobs } from '@/components/page/SelectService/hocks/useGetAllJobs';
-import { useSelectServiceContext } from '@/context/SelectService';
 import { formatMinutes } from '@/utils/formatMinutes';
+import { useSelectServiceContext } from '@/context/SelectServiceContext';
 
 const ServiceCoponent = () => {
   const { value } = useSelectServiceContext();

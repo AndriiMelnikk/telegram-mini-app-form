@@ -8,12 +8,10 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ErrorPage } from '@/components/ErrorPage';
 import { useDidMount } from '@/hooks/useDidMount';
 import { setLocale } from '@/core/i18n/locale';
-import { SelectServiceProvider } from '@/context/SelectService';
 
 import './styles.css';
 import { DataProvider } from '@/context/DataContext';
-import { ThemeProvider } from '@emotion/react';
-import { darkTheme, lightTheme } from '../ui/Calendar/theme';
+import { SelectServiceProvider } from '@/context/SelectServiceContext';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -24,6 +22,7 @@ function RootInner({ children }: PropsWithChildren) {
   useEffect(() => {
     initDataUser && setLocale(initDataUser.language_code);
   }, [initDataUser]);
+
 
   return (
     <AppRoot

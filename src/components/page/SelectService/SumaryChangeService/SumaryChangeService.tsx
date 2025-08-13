@@ -4,7 +4,8 @@ import CallCastom from '@/components/ui/CallCastom';
 
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
 import ModalChoseServise from '../ModalChoseServise';
-import { useSelectServiceContext } from '@/context/SelectService';
+import createStorageContext from '@/context/createStorageContext';
+import { useSelectServiceContext } from '@/context/SelectServiceContext';
 
 type Props = {
   isFocused: boolean;
@@ -13,9 +14,9 @@ type Props = {
 export default function SumaryChangeService({ isFocused }: Props) {
   const { value } = useSelectServiceContext();
 
+
   const { totalService, services } = useSumaryChangeService(value);
 
-  console.log(value);
 
   if (!value.length || isFocused || !services.length) return null;
 
