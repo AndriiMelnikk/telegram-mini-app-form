@@ -13,21 +13,17 @@ import { StatusReq } from '@/types';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 import SpinnerCopmonent from '@/components/ui/Spiner';
 
-
 export default function SelectServicePage() {
   const state = useSelectService();
 
   const { status } = useInitState();
 
   if (status === StatusReq.pending) {
-    return (
-      <SpinnerCopmonent page />
-    );
+    return <SpinnerCopmonent page />;
   }
 
   return (
     <Page back header>
-
       <Title level="2" weight="2">
         Вибір послуг
       </Title>

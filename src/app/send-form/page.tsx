@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import s from './style.module.scss';
 
@@ -11,13 +11,10 @@ import { StatusReq } from '@/types';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 
 export default function Home() {
-
   const { status } = useInitState();
 
   if (status === StatusReq.pending) {
-    return (
-      <SpinnerCopmonent page />
-    );
+    return <SpinnerCopmonent page />;
   }
 
   return (

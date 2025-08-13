@@ -6,7 +6,6 @@ import { StatusReq } from '@/types';
 import SpinnerCopmonent from '../Spiner';
 
 export default function HeaderPage() {
-
   const { titles, status } = useInitState();
 
   if (status === StatusReq.pending) return <SpinnerCopmonent />;

@@ -11,13 +11,10 @@ import { StatusReq } from '@/types';
 import SpinnerCopmonent from '@/components/ui/Spiner';
 
 export default function HomePage() {
-
   const { titles, status } = useInitState();
 
   if (status === StatusReq.pending) {
-    return (
-      <SpinnerCopmonent page />
-    );
+    return <SpinnerCopmonent page />;
   }
   return (
     <Page back={false}>
