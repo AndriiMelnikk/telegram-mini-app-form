@@ -22,6 +22,7 @@ export function useSumaryChangeService() {
   return {
     selectedServ,
     totalService,
+    filtered,
     services
   };
 }

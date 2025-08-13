@@ -1,8 +1,9 @@
 import { Button } from '@telegram-apps/telegram-ui';
 import s from './sumaryChangeService.module.scss';
 import CallCastom from '@/components/ui/CallCastom';
-import ModalChoseServise from '@/components/ui/ModalChoseServise';
+
 import { useSumaryChangeService } from '../hocks/useSumaryChangeService';
+import ModalChoseServise from '../ModalChoseServise';
 
 type Props = {
   isFocused: boolean;

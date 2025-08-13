@@ -6,9 +6,16 @@ function useServices() {
   const dispatch = useDataDispatch();
 
   useEffect(() => {
-    doGetServices(dispatch);
-  }, [dispatch]);
+
+    if (!services || services.length === 0) {
+      doGetServices(dispatch);
+      console.log('useServices: Fetching services');
+    } else {
+      console.log('useServices: Services already loaded');
+    }
+  }, [services, dispatch]);
 
   return { services, status };
 }
+
 export default useServices;
