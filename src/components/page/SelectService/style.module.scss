@@ -2,6 +2,14 @@
   position: relative;
 }
 
+.spinner_wrapper{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .radio_wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

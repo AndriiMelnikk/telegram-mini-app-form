@@ -1,9 +1,23 @@
 import { Button } from '@telegram-apps/telegram-ui';
 import s from './sumaryChangeService.module.scss';
-import ModalChoseServise from '../ModalChoseServise';
-import CallCastom from '../CallCastom';
+import CallCastom from '@/components/ui/CallCastom';
+import ModalChoseServise from '@/components/ui/ModalChoseServise';
+import { useStorageKey } from '@/types/useLocalStorage';
+
 
 export default function SumaryChangeService() {
+
+  const { value: selectedServices } = useStorageKey(
+    'SELECT_SERVICE',
+    [] as string[]
+  );
+
+  // const selectedServices = [];
+
+
+  if (!selectedServices?.length) {
+    return <></>
+  }
   return (
     <div className={s.app_wrapper}>
       <CallCastom

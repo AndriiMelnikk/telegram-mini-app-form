@@ -1,3 +1,6 @@
+import { StatusReq } from '@/types';
+import { initState} from './type';
+
 export const mock = [
   {
     id: 'user_12345',
@@ -21,3 +24,28 @@ export const mock = [
     job: [{ id: 'job_005', title: 'QA Engineer', time: '40 хв', price: 3000 }],
   },
 ];
+
+
+class Thunk {
+
+
+async doGetServices(dispatch: (partialState: Partial<initState>) => void) {
+  const _services = mock;
+
+        dispatch({ status: StatusReq.pending });
+
+  console.log('Fetched services:', _services);
+
+  setTimeout(()=>{
+  dispatch({
+    services: _services,
+    status: StatusReq.resolved,
+  });
+  }, 2000)
+
+}
+
+
+}
+
+export default new Thunk();

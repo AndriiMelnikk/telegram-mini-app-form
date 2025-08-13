@@ -4,6 +4,7 @@ import s from './cardChangeBarber.module.scss';
 import workImg from '@/app/_assets/work.png';
 
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 type Card = {
   id: string;
@@ -18,11 +19,28 @@ type Card = {
 
 type Props = {
   cards: Card[];
+  setSelected: (value: any, merge?: boolean) => void
+  selected: string[];
 };
 
-export default function CardChangeBarber({ cards }: Props) {
+export default function CardChangeBarber({ cards, setSelected: setValue, selected: value }: Props) {
+
+  const [selected, setSelected] = useState<string[]>(value);
+
+  const toggleCheckbox = (value: string) => {
+    setSelected((prev) =>
+      prev.includes(value)
+        ? prev.filter((v) => v !== value)
+        : [...prev, value]
+    );
+  };
+
+  useEffect(() => {
+    setValue(selected);
+  }, [selected]);
+
   return (
-    <div className={s.app_wrapper}>
+    <div className={s.app_wrapper} onClick={() => console.log('Card clicked')}>
       {cards.map((card) => {
         return (
           <div key={card.id} className={s.card_wrapper}>
@@ -35,7 +53,8 @@ export default function CardChangeBarber({ cards }: Props) {
                   <div key={work.id}>
                     <Cell
                       Component="label"
-                      after={<Checkbox name="checkbox" value="1" />}
+                      after={<Checkbox name="checkbox" value={work.id} checked={selected.includes(work.id)}
+                        onChange={() => toggleCheckbox(work.id)} />}
                       subtitle={work.time}
                       multiline
                       description={work.price + ' ₴'}

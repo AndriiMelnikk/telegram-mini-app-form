@@ -17,7 +17,6 @@ function RootInner({ children }: PropsWithChildren) {
   const isDark = useSignal(miniApp.isDark);
   const initDataUser = useSignal(initData.user);
 
-  // Set the user locale.
   useEffect(() => {
     initDataUser && setLocale(initDataUser.language_code);
   }, [initDataUser]);
