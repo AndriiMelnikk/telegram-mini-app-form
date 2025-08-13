@@ -29,7 +29,7 @@ export default function BarberTypeSelector({ services, selectedCategory, setSele
           }
           multiline
         >
-          {service.id}
+          {service.category}
         </Cell>
       ))}
     </div>

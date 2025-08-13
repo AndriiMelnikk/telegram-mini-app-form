@@ -34,7 +34,7 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
         return (
           <div key={card.id} ref={(el) => setSectionRef(card.id, el)}>
             <Title level="3" weight="2" className={s.title}>
-              {card.id}
+              {card.category}
             </Title>
 
             <div key={card.id} className={s.card_wrapper}>

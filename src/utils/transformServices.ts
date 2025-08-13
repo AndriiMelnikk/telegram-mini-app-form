@@ -5,14 +5,15 @@ export function transformServices(services: OriginalServiceType[]): ServiceType[
     (acc, service) => {
       if (!acc[service.category]) {
         acc[service.category] = {
-          id: service.category,
+          id: '',
+          category: service.category,
           img: service.photo,
           job: [],
         };
       }
 
       acc[service.category].job.push({
-        id: service.name,
+       id: '', 
         title: service.name,
         time: service.duration,
         price: service.price,
@@ -23,5 +24,19 @@ export function transformServices(services: OriginalServiceType[]): ServiceType[
     {} as Record<string, ServiceType>
   );
 
-  return Object.values(grouped);
+  let jobCounter = 0;
+
+
+  return Object.values(grouped).map((service, catIndex) => {
+    const newJobs = service.job.map(job => ({
+      ...job,
+      id: `job_${jobCounter++}`, 
+    }));
+
+    return {
+      ...service,
+      id: `svc_${catIndex}`,
+      job: newJobs,
+    };
+  });
 }

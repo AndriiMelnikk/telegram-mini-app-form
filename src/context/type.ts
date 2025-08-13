@@ -12,12 +12,15 @@ export type OriginalServiceType = {
 export type ServiceType = {
   id: string;
   img: string;
-  job: {
-    id: string;
-    title: string;
-    time: number;
-    price: number;
-  }[];
+  category: string;
+  job: JobType[];
+};
+
+export type JobType = {
+  id: string;
+  title: string;
+  time: number;
+  price: number;
 };
 
 export type initState = {
