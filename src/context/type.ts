@@ -6,7 +6,7 @@ interface ServiceType {
   job: {
     id: string;
     title: string;
-    time: string;
+    time: number;
     price: number;
   }[];
 }

@@ -5,6 +5,7 @@ import workImg from '@/app/_assets/work.png';
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { formatMinutes } from '@/utils/formatMinutes';
 
 type Card = {
   id: string;
@@ -12,7 +13,7 @@ type Card = {
   job: {
     id: string;
     title: string;
-    time: string;
+    time: number;
     price: number;
   }[];
 };
@@ -55,7 +56,7 @@ export default function CardChangeBarber({ cards, setSelected: setValue, selecte
                       Component="label"
                       after={<Checkbox name="checkbox" value={work.id} checked={selected.includes(work.id)}
                         onChange={() => toggleCheckbox(work.id)} />}
-                      subtitle={work.time}
+                      subtitle={formatMinutes(work.time)}
                       multiline
                       description={work.price + ' ₴'}
                     >
