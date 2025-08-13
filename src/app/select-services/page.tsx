@@ -13,6 +13,7 @@ import SumaryChangeService from '@/components/page/SelectService/SumaryChangeSer
 
 export default function SelectServicePage() {
   const [value, setValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
 
   return (
@@ -23,7 +24,7 @@ export default function SelectServicePage() {
 
       <BarberTypeSelector />
 
-      <ServiceSearch value={value} setValue={setValue} />
+      <ServiceSearch value={value} setValue={setValue} isFocused={isFocused} setIsFocused={setIsFocused} />
 
       <div className={s.premiumService_wrapper}>
         <PremiumService />
@@ -31,7 +32,7 @@ export default function SelectServicePage() {
 
       <ServiceList />
 
-      <SumaryChangeService />
+      <SumaryChangeService isFocused={isFocused} />
     </Page>
   );
 }

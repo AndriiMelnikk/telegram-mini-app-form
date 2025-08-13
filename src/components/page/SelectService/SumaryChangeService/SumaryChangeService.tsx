@@ -8,7 +8,11 @@ import { useStorageObserver } from '@/hooks/useStorageObserver';
 import { useState } from 'react';
 
 
-export default function SumaryChangeService() {
+type Props = {
+  isFocused: boolean;
+};
+
+export default function SumaryChangeService({ isFocused }: Props) {
 
 
   const { value: selectedServices } = useStorageKey(
@@ -22,10 +26,12 @@ export default function SumaryChangeService() {
     setSelectedServ(value ?? []);
   });
 
-  if (!selectedServ || selectedServ.length === 0) {
+  if (!selectedServ || selectedServ.length === 0 || isFocused) {
 
     return <></>;
   }
+
+
   return (
     <div className={s.app_wrapper}>
       <CallCastom
