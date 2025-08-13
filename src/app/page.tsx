@@ -41,11 +41,14 @@ function Header({ titles }: { titles: { title: string; subtitle: string } }) {
 function Navigation() {
   return (
     <Section>
-      <NavigationCell href="/send-form" icon={<IoIosCalendar />}>
+      <NavigationCell href="/calendar" icon={<IoIosCalendar />}>
         Вибрати дату
       </NavigationCell>
       <NavigationCell href="/select-services" icon={<IoIosList />}>
         Вибрати послугу
+      </NavigationCell>
+      <NavigationCell href="/send-form" icon={<IoIosList />}>
+        Форма замовлення
       </NavigationCell>
     </Section>
   );

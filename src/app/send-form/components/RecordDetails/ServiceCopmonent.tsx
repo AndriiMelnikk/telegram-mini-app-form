@@ -9,15 +9,12 @@ import { useSumaryChangeService } from '@/components/page/SelectService/hocks/us
 import { useGetAllJobs } from '@/components/page/SelectService/hocks/useGetAllJobs';
 import { useSelectServiceContext } from '@/context/SelectService';
 import { formatMinutes } from '@/utils/formatMinutes';
-import SpinnerCopmonent from '@/components/ui/Spiner';
 
 const ServiceCoponent = () => {
   const { value } = useSelectServiceContext();
 
   const { totalService, filtered } = useSumaryChangeService(value);
   const selectJobs = useGetAllJobs(filtered);
-
-  if (!selectJobs.length) return <SpinnerCopmonent page />;
 
   return (
     <>
