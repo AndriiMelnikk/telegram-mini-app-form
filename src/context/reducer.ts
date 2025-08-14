@@ -1,6 +1,8 @@
 import { StatusReq } from '@/types';
 import { initState, ServiceType, OriginalServiceType } from './type';
 import { transformServices } from '@/utils/transformServices';
+import { setCookie, getCookie } from '@/utils/whitCockies';
+import axios from 'axios';
 
 const mock: OriginalServiceType[] = [
   {
@@ -58,6 +60,9 @@ class Thunk {
     const _services = transformServices(mock);
 
     setTimeout(() => {
+
+    setCookie('token', data.token, 14);
+
       dispatch({
         titles: {
           title: data.data.title,
@@ -67,6 +72,27 @@ class Thunk {
         status: StatusReq.resolved,
       });
     }, 2000);
+  }
+
+  async doGetTime(time: string){
+      try {
+    const token = getCookie('token'); // беремо токен з кукі
+    if (!token) throw new Error('Токен не знайдено');
+
+    const url = `https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/timeslots?date=${time}`;
+
+    const response = await axios.get(url , {
+      headers: {
+        Authorization: `Bearer ${token}`, // передаємо токен у заголовку
+      },
+    });
+
+    console.log('Дані:', response.data);
+    return response.data;
+  } catch (error: any) {
+    console.error('Помилка запиту:', error.message);
+    throw error;
+  }
   }
 }
 
