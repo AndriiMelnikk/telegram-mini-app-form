@@ -9,20 +9,17 @@ import CalendarBlock from './Calendar';
 import NextStep from '@/components/page/Calendar/NextStep';
 
 export default function Home() {
-    const { status } = useInitState();
+  const { status } = useInitState();
 
+  if (status === StatusReq.pending) {
+    return <SpinnerCopmonent page />;
+  }
 
-
-    if (status === StatusReq.pending) {
-        return <SpinnerCopmonent page />;
-    }
-
-    return (
-        <Page back header>
-            <CalendarBlock />
-            <ChangeTime />
-            <NextStep />
-        </Page>
-
-    );
+  return (
+    <Page back header>
+      <CalendarBlock />
+      <ChangeTime />
+      <NextStep />
+    </Page>
+  );
 }

@@ -9,10 +9,9 @@ import { add30Minutes } from '@/utils/add30minutes';
 import { formatDateUA } from '@/utils/formatDateUA';
 
 export default function RecordDetails() {
-
   const { value } = useTimeServiceContext();
 
-  const endTime = add30Minutes(value.time || "00:00");
+  const endTime = add30Minutes(value.time || '00:00');
   return (
     <div className={s.app_wrapper}>
       <div className={s.title_wrapper}>
@@ -34,9 +33,13 @@ export default function RecordDetails() {
                 <MdChevronRight />
               </IconContainer>
             }
-            description={<>{value.time || "00:00"} - {endTime}</>}
+            description={
+              <>
+                {value.time || '00:00'} - {endTime}
+              </>
+            }
           >
-            <>{formatDateUA(value.date || "")}</>
+            <>{formatDateUA(value.date || '')}</>
           </Cell>
         </Link>
       </Section>

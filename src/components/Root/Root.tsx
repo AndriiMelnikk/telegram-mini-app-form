@@ -24,14 +24,12 @@ function RootInner({ children }: PropsWithChildren) {
     initDataUser && setLocale(initDataUser.language_code);
   }, [initDataUser]);
 
-
   return (
     <AppRoot
       appearance={isDark ? 'dark' : 'light'}
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
       className="root"
     >
-
       <DataProvider>
         <SelectServiceProvider>
           <TimeServiceProvider>
@@ -47,7 +45,6 @@ function RootInner({ children }: PropsWithChildren) {
           </TimeServiceProvider>
         </SelectServiceProvider>
       </DataProvider>
-
     </AppRoot>
   );
 }

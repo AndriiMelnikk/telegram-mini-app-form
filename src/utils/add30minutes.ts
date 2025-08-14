@@ -1,4 +1,4 @@
-export  function add30Minutes(time: string): string {
+export function add30Minutes(time: string): string {
   let [hours, minutes] = time.split(':').map(Number);
 
   minutes += 30;

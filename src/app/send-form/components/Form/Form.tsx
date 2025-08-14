@@ -2,7 +2,6 @@ import { Input, Select, Checkbox, Info, Link, Placeholder } from '@telegram-apps
 import { useFormContext } from '@/context/FormContext';
 import s from './form.module.scss';
 
-
 const MyComponent = () => {
   return (
     <div className={s.form}>
@@ -10,9 +9,9 @@ const MyComponent = () => {
       <ConsentCheckbox />
     </div>
   );
-}
+};
 
-export default MyComponent
+export default MyComponent;
 
 function FormInputs() {
   const { values, errors, handleChange } = useFormContext();
@@ -23,34 +22,35 @@ function FormInputs() {
         header="Ім'я"
         placeholder="Введіть ваше ім'я та прізвище"
         value={values.name}
-        onChange={e => handleChange('name', e.target.value)}
+        onChange={(e) => handleChange('name', e.target.value)}
         status={errors.name ? 'error' : undefined}
       />
       <Input
         header="Телефон"
         placeholder="Номер із кодом країни"
         value={values.phone}
-        onChange={e => handleChange('phone', e.target.value)} status={errors.phone ? 'error' : undefined}
+        onChange={(e) => handleChange('phone', e.target.value)}
+        status={errors.phone ? 'error' : undefined}
       />
       <Input
         header="E-mail"
         placeholder="Введіть e-mail"
         value={values.email}
-        onChange={e => handleChange('email', e.target.value)}
+        onChange={(e) => handleChange('email', e.target.value)}
         status={errors.email ? 'error' : undefined}
       />
       <Input
         header="Коментар"
         placeholder="Коментар до запису"
         value={values.comment}
-        onChange={e => handleChange('comment', e.target.value)}
+        onChange={(e) => handleChange('comment', e.target.value)}
         status={errors.comment ? 'error' : undefined}
       />
 
       <Select
         header="Нагадування"
         value={values.reminder}
-        onChange={e => handleChange('reminder', e.target.value)}
+        onChange={(e) => handleChange('reminder', e.target.value)}
       >
         <option>За 1 годину до візиту</option>
         <option>За 2 годину до візиту</option>
@@ -81,7 +81,7 @@ function ConsentCheckbox() {
       <Placeholder>
         <Checkbox
           checked={values.consent}
-          onChange={e => handleChange('consent', e.target.checked)}
+          onChange={(e) => handleChange('consent', e.target.checked)}
         />
       </Placeholder>
       <Info type="text">

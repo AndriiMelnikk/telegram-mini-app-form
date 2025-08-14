@@ -23,11 +23,7 @@ function createStorageContext<T>(storageKey: string, defaultValue: T) {
       localStorage.setItem(storageKey, JSON.stringify(value));
     }, [value]);
 
-    return (
-      <Context.Provider value={{ value, setValue }}>
-        {children}
-      </Context.Provider>
-    );
+    return <Context.Provider value={{ value, setValue }}>{children}</Context.Provider>;
   };
 
   const useStorage = () => {

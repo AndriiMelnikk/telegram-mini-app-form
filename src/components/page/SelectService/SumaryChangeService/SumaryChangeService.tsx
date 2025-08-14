@@ -16,10 +16,7 @@ export default function SumaryChangeService({ isFocused }: Props) {
   const { value } = useSelectServiceContext();
   const { value: timeServiceValue } = useTimeServiceContext();
 
-
-
   const { totalService, services } = useSumaryChangeService(value);
-
 
   if (!value.length || isFocused || !services.length) return null;
 
@@ -32,18 +29,13 @@ export default function SumaryChangeService({ isFocused }: Props) {
         rightText={`${totalService.totalPrice} ₴`}
       />
 
-      <Link href={
-        timeServiceValue.time && timeServiceValue.date ? "/send-form" : "/calendar"
-      }>
+      <Link href={timeServiceValue.time && timeServiceValue.date ? '/send-form' : '/calendar'}>
         <div className={s.btn_wrapper}>
           <Button mode="filled" size="s">
-
-            {timeServiceValue.time && timeServiceValue.date ? "Завершити запис" : "Обрати дату"}
+            {timeServiceValue.time && timeServiceValue.date ? 'Завершити запис' : 'Обрати дату'}
           </Button>
         </div>
       </Link>
-
-
     </div>
   );
 }

@@ -1,15 +1,7 @@
 export function formatDateUA(dateStr: string): string {
   const date = new Date(dateStr);
 
-  const weekdays = [
-    'Неділя',
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    'П’ятниця',
-    'Субота',
-  ];
+  const weekdays = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П’ятниця', 'Субота'];
 
   const months = [
     'січня',
@@ -32,4 +24,3 @@ export function formatDateUA(dateStr: string): string {
 
   return `${dayOfWeek}, ${day} ${month}`;
 }
-

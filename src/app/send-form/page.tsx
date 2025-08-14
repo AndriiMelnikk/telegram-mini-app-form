@@ -1,7 +1,5 @@
 'use client';
 
-
-
 import { Page } from '@/components/Page';
 import RecordDetails from './components/RecordDetails';
 import { Cell, Section } from '@telegram-apps/telegram-ui';
@@ -9,7 +7,6 @@ import SpinnerCopmonent from '@/components/ui/Spiner';
 import { StatusReq } from '@/types';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 import { useSumaryChangeService } from '@/components/page/SelectService/hocks/useSumaryChangeService';
-
 
 import Send from './components/Send';
 import { FormProvider } from '@/context/FormContext';
@@ -41,9 +38,7 @@ export default function Home() {
         </Section>
 
         <Send />
-
-      </FormProvider >
+      </FormProvider>
     </Page>
-
   );
 }
