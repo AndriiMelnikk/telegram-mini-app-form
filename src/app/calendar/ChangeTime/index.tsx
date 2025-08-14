@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import BlockTime from './BlockTime';
 import { useTimeServiceContext } from '@/context/TimeServiceContext';
+import splitTimesByPeriod from '@/utils/splitTimesByPeriod';
 
-export default function ChangeTime() {
+type Props = {
+  freeTime: string[];
+}
+export default function ChangeTime({ freeTime }: Props) {
   const { value, setValue } = useTimeServiceContext();
   const [selectedTime, setSelectedTime] = useState<string | null>(value.time || null);
 
@@ -13,25 +17,27 @@ export default function ChangeTime() {
     setValue({ ...value, time });
   };
 
+  const splitFreeTime = splitTimesByPeriod(freeTime);
+
   return (
     <div>
       <BlockTime
         selectedTime={selectedTime}
         setSelectedTime={handleTimeChange}
         header="Ранок"
-        time={['08:00', '09:00', '10:00', '11:00', '12:00']}
+        time={splitFreeTime.morning}
       />
       <BlockTime
         selectedTime={selectedTime}
         setSelectedTime={handleTimeChange}
         header="День"
-        time={['13:00', '14:00', '15:00', '16:00']}
+        time={splitFreeTime.day}
       />
       <BlockTime
         selectedTime={selectedTime}
         setSelectedTime={handleTimeChange}
         header="Вечір"
-        time={['17:00', '18:00', '19:00', '20:00']}
+        time={splitFreeTime.evening}
       />
     </div>
   );

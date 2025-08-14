@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import StyledCalendar from './style';
 import { useSwipeable } from 'react-swipeable';
 
-
 type CalendarProps = {
   setDisplayMonth: any;
   displayMonth: any;
@@ -15,17 +14,13 @@ type CalendarProps = {
 const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth, setMiniCalendar }: CalendarProps) => {
   const theme = useTheme();
 
-
-
   const goPrevMonth = () => {
     if (!dayjs(displayMonth).isAfter(today, 'month')) return;
     setDisplayMonth(dayjs(displayMonth).subtract(1, 'month'));
-
   };
 
   const goNextMonth = () => {
     setDisplayMonth(dayjs(displayMonth).add(1, 'month'));
-
   };
 
   const handlers = useSwipeable({
@@ -49,7 +44,6 @@ const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth, setMiniC
           reduceAnimations
           onViewChange={() => setMiniCalendar(true)}
         />
-
       </div>
     </div>
   );
