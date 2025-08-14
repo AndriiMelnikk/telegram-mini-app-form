@@ -7,52 +7,51 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import StyledCalendar from './style';
 import { useTheme } from '@mui/material/styles';
+import { useSwipeable } from 'react-swipeable';
 
 type CalendarProps = {
   value: dayjs.Dayjs | null;
   setValue: (newValue: dayjs.Dayjs | null) => void;
 };
+
 export default function MyCalendar({ value, setValue }: CalendarProps) {
-  const [compact, setCompact] = React.useState(false);
-  const [currentMonth, setCurrentMonth] = React.useState(dayjs()); // керує відображуваним місяцем
-  const touchStartX = React.useRef<number | null>(null);
+  const [displayMonth, setDisplayMonth] = React.useState(value);
 
   const theme = useTheme();
-  const today = dayjs();
+  const today = React.useMemo(() => dayjs(), []);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
+  const goPrevMonth = () => {
+    if (!dayjs(displayMonth).isAfter(today, 'month')) return;
+    setDisplayMonth(dayjs(displayMonth).subtract(1, 'month'));
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const swipeThreshold = 50; // мінімальна довжина свайпу в px
-
-    if (deltaX > swipeThreshold) {
-      // свайп вправо — попередній місяць
-      setCurrentMonth((prev) => prev.subtract(1, 'month'));
-    } else if (deltaX < -swipeThreshold) {
-      // свайп вліво — наступний місяць
-      setCurrentMonth((prev) => prev.add(1, 'month'));
-    }
-
-    touchStartX.current = null;
+  const goNextMonth = () => {
+    setDisplayMonth(dayjs(displayMonth).add(1, 'month'));
   };
 
+  // Свайп-обробники
+  const handlers = useSwipeable({
+    onSwipedLeft: () => goNextMonth(),
+    onSwipedRight: () => goPrevMonth(),
+    delta: 50,
+    trackTouch: true,
+    trackMouse: false,
+    rotationAngle: 0,
+  });
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-      <div onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-        <StyledCalendar
-          theme={theme}
-          value={value}
-          onChange={(newValue) => setValue(newValue)}
-          minDate={today}
-          shouldDisableDate={(date) => date.isBefore(today, 'day')}
-          onViewChange={() => setCompact(!compact)}
-          referenceDate={currentMonth} // важливо: цей проп керує відображенням місяця у MUI X DateCalendar
-        />
-      </div>
-    </LocalizationProvider>
+    <div>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
+        <div {...handlers} style={{ touchAction: 'pan-y' }}>
+          <StyledCalendar
+            theme={theme}
+            value={displayMonth}
+            onChange={setValue}
+            minDate={today}
+            shouldDisableDate={(date) => date.isBefore(today, 'day')}
+            reduceAnimations
+          />
+        </div>
+      </LocalizationProvider>
+    </div>
   );
 }
