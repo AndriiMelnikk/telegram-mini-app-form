@@ -5,6 +5,7 @@ import { Theme } from '@mui/material/styles';
 const StyledCalendar = styled(DateCalendar)(({ theme }: { theme: Theme }) => ({
   maxWidth: 'calc(100% + 40px)',
   width: 'calc(100% + 40px)',
+  paddingRight: '0px',
   maxHeight: 'none',
 
   padding: '0 16px',
