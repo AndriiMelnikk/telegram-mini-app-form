@@ -29,7 +29,10 @@ export default function MyCalendar({ value, setValue }: CalendarProps) {
     setDisplayMonth(dayjs(displayMonth).add(1, 'month'));
   };
 
-  // Свайп-обробники
+  React.useEffect(() => {
+    setDisplayMonth(value);
+  }, [value]);
+
   const handlers = useSwipeable({
     onSwipedLeft: () => goNextMonth(),
     onSwipedRight: () => goPrevMonth(),
