@@ -23,7 +23,7 @@ export default function MyCalendar({ value, setValue }: CalendarProps) {
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-        <WeekPicker />
+        <WeekPicker day={displayMonth} setValue={setValue} />
         <FullCalendar
           displayMonth={displayMonth}
           setDisplayMonth={setDisplayMonth}

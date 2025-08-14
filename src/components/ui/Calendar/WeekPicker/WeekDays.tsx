@@ -1,31 +1,41 @@
+// WeekDays.tsx
 import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
 type Props = {
   days: Dayjs[];
-  anchor: Dayjs;
   setAnchor: (d: Dayjs) => void;
   isDateDisabled: (d: Dayjs) => boolean;
+  day: Dayjs | null;
+  setValue: (newValue: Dayjs | null) => void;
 };
 
-export const WeekDays = ({ days, anchor, setAnchor, isDateDisabled }: Props) => (
-  <div className="days">
-    {days.map(date => {
-      const isToday = date.isSame(dayjs(), 'day');
-      const isSelectedWeek = date.isSame(anchor, 'week') || date.isSame(anchor, 'isoWeek');
-      const disabled = isDateDisabled(date);
+export const WeekDays = ({ days, setAnchor, isDateDisabled, day, setValue }: Props) => {
+  const handleDayClick = (date: Dayjs) => {
+    if (!isDateDisabled(date)) {
+      setAnchor(date);
+      setValue(date);
+    }
+  };
 
-      return (
-        <div key={date.toString()} className="daysDiv">
+  return (
+    <div className="days">
+      {days.map((date) => {
+        const isToday = date.isSame(dayjs(), 'day');
+        const isSelected = day ? date.isSame(day, 'day') : false;
+        const disabled = isDateDisabled(date);
+
+        return (
           <button
-            onClick={() => !disabled && setAnchor(date)}
+            key={date.toString()}
+            onClick={() => handleDayClick(date)}
             disabled={disabled}
-            className={`dayButton ${isToday ? 'today' : ''} ${isSelectedWeek ? 'selected' : ''}`}
+            className={`dayButton ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`}
           >
             {date.date()}
           </button>
-        </div>
-      );
-    })}
-  </div>
-);
+        );
+      })}
+    </div>
+  );
+};

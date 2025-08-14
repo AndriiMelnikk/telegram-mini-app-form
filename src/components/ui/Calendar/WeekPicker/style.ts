@@ -96,16 +96,18 @@ const WeekPickerWrapper = styled('div')(({ theme }) => ({
       cursor: 'pointer',
       background: 'transparent',
       color: theme.palette.text.primary,
+      fontSize: '14px',
+
+      '&.today': {
+        border: `1px solid ${theme.palette.primary.main}`,
+      },
       '&:hover': {
         background: theme.palette.action.hover,
       },
-    },
-
-    '& .today': {
-      // border: `1px solid ${theme.palette.primary.main}`,
-      // color: theme.palette.primary.main,
-      color: 'red',
-
+      '&:disabled': {
+        color: theme.palette.action.disabled,
+        cursor: 'default',
+      },
     },
 
     '& .selected': {
