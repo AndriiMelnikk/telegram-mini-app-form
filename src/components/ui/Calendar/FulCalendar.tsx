@@ -8,9 +8,10 @@ type CalendarProps = {
   displayMonth: any;
   setValue: any;
   today: any;
+  setMiniCalendar: any;
 };
 
-const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth }: CalendarProps) => {
+const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth, setMiniCalendar }: CalendarProps) => {
   const theme = useTheme();
 
   const goPrevMonth = () => {
@@ -41,6 +42,7 @@ const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth }: Calend
           minDate={today}
           shouldDisableDate={(date) => date.isBefore(today, 'day')}
           reduceAnimations
+          onViewChange={() => setMiniCalendar(true)}
         />
       </div>
     </div>

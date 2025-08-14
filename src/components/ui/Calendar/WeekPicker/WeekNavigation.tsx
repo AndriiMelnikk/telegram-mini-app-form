@@ -1,7 +1,8 @@
 // WeekNavigation.tsx
 import React from 'react';
 import { ArrowDropDownIcon, ArrowLeftIcon, ArrowRightIcon } from '@mui/x-date-pickers';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+dayjs.locale('uk')
 
 type Props = {
   current: Dayjs;
@@ -9,6 +10,7 @@ type Props = {
   goNextWeek: () => void;
   prevDisabled: boolean;
   nextDisabled: boolean;
+  setMiniCalendar: (value: boolean) => void;
 };
 
 export const WeekNavigation = ({
@@ -17,9 +19,10 @@ export const WeekNavigation = ({
   goNextWeek,
   prevDisabled,
   nextDisabled,
+  setMiniCalendar
 }: Props) => (
   <div className="navigation">
-    <div className="navigation-title">
+    <div className="navigation-title" onClick={() => setMiniCalendar(false)}>
       <b>{current.format('MMMM YYYY')}</b>
       <span>
         <ArrowDropDownIcon fontSize="small" />

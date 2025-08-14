@@ -5,13 +5,15 @@ import { WeekNavigation } from './WeekNavigation';
 import { WeekDaysHeader } from './WeekDaysHeader';
 import { WeekDays } from './WeekDays';
 import dayjs, { Dayjs } from 'dayjs';
+import { useSwipeable } from 'react-swipeable';
 
 type Props = {
   day: Dayjs | null;
   setValue: (newValue: Dayjs | null) => void;
+  setMiniCalendar: (value: boolean) => void;
 };
 
-export function WeekPickerPlain({ day, setValue }: Props) {
+export function WeekPickerPlain({ day, setValue, setMiniCalendar }: Props) {
   const {
     anchor,
     days,
@@ -24,6 +26,15 @@ export function WeekPickerPlain({ day, setValue }: Props) {
     isDateDisabled,
   } = useWeekPicker({});
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => goNextWeek(),
+    onSwipedRight: () => goPrevWeek(),
+    delta: 50,
+    trackTouch: true,
+    trackMouse: false,
+    rotationAngle: 0,
+  });
+
   return (
     <WeekPickerWrapper>
       <WeekNavigation
@@ -32,9 +43,11 @@ export function WeekPickerPlain({ day, setValue }: Props) {
         goNextWeek={goNextWeek}
         prevDisabled={prevDisabled}
         nextDisabled={nextDisabled}
+        setMiniCalendar={setMiniCalendar}
       />
       <WeekDaysHeader weekdayShort={weekdayShort} />
       <WeekDays
+        {...handlers}
         days={days}
         setAnchor={setAnchor}
         isDateDisabled={isDateDisabled}

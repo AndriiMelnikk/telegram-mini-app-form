@@ -15,21 +15,27 @@ type CalendarProps = {
 
 export default function MyCalendar({ value, setValue }: CalendarProps) {
   const [displayMonth, setDisplayMonth] = React.useState(value);
+  const [miniCalendar, setMiniCalendar] = React.useState(false);
 
   React.useEffect(() => {
     setDisplayMonth(value);
   }, [value]);
 
+
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-        <WeekPicker day={displayMonth} setValue={setValue} />
-        <FullCalendar
-          displayMonth={displayMonth}
-          setDisplayMonth={setDisplayMonth}
-          today={dayjs()}
-          setValue={setValue}
-        />
+
+        {miniCalendar ? (
+          <WeekPicker day={displayMonth} setValue={setValue} setMiniCalendar={setMiniCalendar} />
+        ) : (
+          <FullCalendar
+            displayMonth={displayMonth}
+            setDisplayMonth={setDisplayMonth}
+            today={dayjs()}
+            setValue={setValue}
+            setMiniCalendar={setMiniCalendar}
+          />)}
       </LocalizationProvider>
     </div>
   );
