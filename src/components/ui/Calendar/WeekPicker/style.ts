@@ -102,8 +102,10 @@ const WeekPickerWrapper = styled('div')(({ theme }) => ({
     },
 
     '& .today': {
-      border: `1px solid ${theme.palette.primary.main}`,
-      color: theme.palette.primary.main,
+      // border: `1px solid ${theme.palette.primary.main}`,
+      // color: theme.palette.primary.main,
+      color: 'red',
+
     },
 
     '& .selected': {
