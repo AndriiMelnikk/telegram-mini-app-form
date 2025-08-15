@@ -7,6 +7,8 @@ export function setCookie(name: string, value: string, days = 7) {
 
 // Читаємо кукі
 export function getCookie(name: string): string | null {
+  if (typeof document === "undefined") return null; // на сервері повертаємо null
+
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
   return match ? decodeURIComponent(match[2]) : null;
 }

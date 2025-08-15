@@ -13,6 +13,8 @@ import './styles.css';
 import { DataProvider } from '@/context/DataContext';
 import { SelectServiceProvider } from '@/context/SelectServiceContext';
 import { TimeServiceProvider } from '@/context/TimeServiceContext';
+import useTelegramInitData from '@/utils/useTelegramUserId';
+import SpinnerCopmonent from '../ui/Spiner';
 
 function RootInner({ children }: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -23,6 +25,12 @@ function RootInner({ children }: PropsWithChildren) {
   useEffect(() => {
     initDataUser && setLocale(initDataUser.language_code);
   }, [initDataUser]);
+
+  const data = useTelegramInitData();
+
+  if (!data.query_id || !data.user || !data.auth_date || !data.signature || !data.hash) {
+    return null;
+  }
 
   return (
     <AppRoot
@@ -40,7 +48,11 @@ function RootInner({ children }: PropsWithChildren) {
                 minHeight: '100vh',
               }}
             >
-              {children}
+              {!data.query_id || !data.user || !data.auth_date || !data.signature || !data.hash ? (
+                <SpinnerCopmonent />
+              ) : (
+                children
+              )}
             </List>
           </TimeServiceProvider>
         </SelectServiceProvider>

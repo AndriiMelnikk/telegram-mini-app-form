@@ -3,7 +3,6 @@ import { OutputType } from '@/context/type';
 import { getCookie } from '@/utils/whitCockies';
 import axios from 'axios';
 
-
 const sendForm = async (data: OutputType) => {
   try {
     let token = getCookie('token');
@@ -12,7 +11,7 @@ const sendForm = async (data: OutputType) => {
       const response = await getServices();
       return response?.data.token;
     };
-    
+
     if (!token) {
       const lastToken = await getLastToken();
       if (lastToken) {

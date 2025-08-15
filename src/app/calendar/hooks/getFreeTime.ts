@@ -2,7 +2,6 @@ import { getServices } from '@/context/reducer';
 import { getCookie } from '@/utils/whitCockies';
 import axios from 'axios';
 
-
 const getFreeTime = async (time: string) => {
   try {
     let token = getCookie('token');
@@ -11,7 +10,7 @@ const getFreeTime = async (time: string) => {
       const response = await getServices();
       return response?.data.token;
     };
-    
+
     if (!token) {
       const lastToken = await getLastToken();
       if (lastToken) {
@@ -21,7 +20,7 @@ const getFreeTime = async (time: string) => {
 
     const url = `https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/timeslots?date=${time}`;
 
-    const response = await axios.get(url , {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

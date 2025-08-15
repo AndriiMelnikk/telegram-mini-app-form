@@ -13,7 +13,7 @@ import SpinnerCopmonent from '@/components/ui/Spiner';
 import sendForm from './hooks/sendForm';
 import dateTimeToTimestamp from '@/utils/dateTimeToTimestamp';
 import { add30Minutes } from '@/utils/add30minutes';
-import { useTelegramUserId } from '@/utils/useTelegramUserId';
+import { useTelegramInitData } from '@/utils/useTelegramUserId';
 
 const Send = () => {
   const { cards } = useSelectService();
@@ -23,7 +23,7 @@ const Send = () => {
   const [sended, setSended] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const userId = useTelegramUserId();
+  const { user } = useTelegramInitData();
 
   const handleSend = () => {
     setLoading(true);
@@ -37,43 +37,51 @@ const Send = () => {
     const endTime = add30Minutes(timeValue.time || '00:00');
 
     const hard = {
-      "user_id": userId,
-      "start": dateTimeToTimestamp({ time: timeValue.time, date: timeValue.date }),
-      "end": dateTimeToTimestamp({ time: endTime, date: timeValue.date }),
-    }
+      user_id: user?.id,
+      start: dateTimeToTimestamp({ time: timeValue.time, date: timeValue.date }),
+      end: dateTimeToTimestamp({ time: endTime, date: timeValue.date }),
+    };
 
     console.log('Service Value:', allService);
 
-    sendForm({ ...allService, ...hard }).then(() => {
-      alert('Ви успішно записані');
-      setSended(true);
-    }).catch(() => {
-      alert('Сталася помилка. Спробуйте ще раз.');
-    }).finally(() => {
-      setLoading(false);
-    });
+    sendForm({ ...allService, ...hard })
+      .then(() => {
+        alert('Ви успішно записані');
+        setSended(true);
+      })
+      .catch(() => {
+        alert('Сталася помилка. Спробуйте ще раз.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   if (loading) {
-    return <div className={s.button_wrapper}> <SpinnerCopmonent /></div>;
+    return (
+      <div className={s.button_wrapper}>
+        {' '}
+        <SpinnerCopmonent />
+      </div>
+    );
   }
 
   if (sended) {
-    return <div className={s.button_wrapper}>
-      <Button mode="filled" size="s" disabled>
-        Ви успішно записані
-      </Button>
-    </div>
+    return (
+      <div className={s.button_wrapper}>
+        <Button mode="filled" size="s" disabled>
+          Ви успішно записані
+        </Button>
+      </div>
+    );
   }
-
 
   return (
     <div className={s.button_wrapper}>
-
-      <Button mode="filled" size="s" onClick={handleSend} >
+      <Button mode="filled" size="s" onClick={handleSend}>
         Записатись
       </Button>
     </div>
   );
-}
+};
 export default Send;

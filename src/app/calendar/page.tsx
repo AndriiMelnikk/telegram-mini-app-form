@@ -41,7 +41,14 @@ export default function Home() {
   return (
     <Page back header>
       <CalendarBlock />
-      {loader ? <div className={s.block_spiner}> <SpinnerCopmonent /></div> : <ChangeTime freeTime={freeTime} />}
+      {loader ? (
+        <div className={s.block_spiner}>
+          {' '}
+          <SpinnerCopmonent />
+        </div>
+      ) : (
+        <ChangeTime freeTime={freeTime} />
+      )}
       <NextStep />
     </Page>
   );
