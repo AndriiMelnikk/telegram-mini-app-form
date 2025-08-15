@@ -8,11 +8,12 @@ import { useTimeServiceContext } from '@/context/TimeServiceContext';
 import { useSelectServiceContext } from '@/context/SelectServiceContext';
 import transformServices from '@/utils/findJobsByIds';
 import useSelectService from '@/app/select-services/hooks/useSelectService';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SpinnerCopmonent from '@/components/ui/Spiner';
 import sendForm from './hooks/sendForm';
 import dateTimeToTimestamp from '@/utils/dateTimeToTimestamp';
 import { add30Minutes } from '@/utils/add30minutes';
+import { useTelegramUserId } from '@/utils/useTelegramUserId';
 
 const Send = () => {
   const { cards } = useSelectService();
@@ -21,14 +22,8 @@ const Send = () => {
   const { value: serviceValue } = useSelectServiceContext();
   const [sended, setSended] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [userId, setUserId] = useState(null);
 
-  // useEffect(() => {
-  //   const { initDataUnsafe } = retrieveLaunchParams();
-  //   if (initDataUnsafe?.user?.id) {
-  //     setUserId(initDataUnsafe.user.id);
-  //   }
-  // }, []);
+  const userId = useTelegramUserId();
 
   const handleSend = () => {
     setLoading(true);
@@ -42,7 +37,7 @@ const Send = () => {
     const endTime = add30Minutes(timeValue.time || '00:00');
 
     const hard = {
-      "user_id": "u90127404",
+      "user_id": userId,
       "start": dateTimeToTimestamp({ time: timeValue.time, date: timeValue.date }),
       "end": dateTimeToTimestamp({ time: endTime, date: timeValue.date }),
     }
