@@ -1,9 +1,10 @@
 import { getServices } from '@/context/reducer';
+import { OutputType } from '@/context/type';
 import { getCookie } from '@/utils/whitCockies';
 import axios from 'axios';
 
 
-const getFreeTime = async (time: string) => {
+const sendForm = async (data: OutputType) => {
   try {
     let token = getCookie('token');
 
@@ -19,9 +20,9 @@ const getFreeTime = async (time: string) => {
       }
     }
 
-    const url = `https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/timeslots?date=${time}`;
+    const url = 'https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/event';
 
-    const response = await axios.get(url , {
+    const response = await axios.post(url, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -34,4 +35,4 @@ const getFreeTime = async (time: string) => {
   }
 };
 
-export default getFreeTime;
+export default sendForm;

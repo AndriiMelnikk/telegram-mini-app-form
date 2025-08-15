@@ -10,7 +10,7 @@ const StyledCalendar = styled(DateCalendar)(({ theme }: { theme: Theme }) => ({
 
   padding: '0 16px',
   marginLeft: '-20px',
-  boxShadow: '0 4px 6px -2px rgba(0, 0, 0, 0.15)',
+  // boxShadow: '0 4px 6px -2px rgba(0, 0, 0, 0.15)',
   borderBottomLeftRadius: '20px',
   borderBottomRightRadius: '20px',
 
@@ -30,7 +30,7 @@ const StyledCalendar = styled(DateCalendar)(({ theme }: { theme: Theme }) => ({
   },
 
   '& .MuiDayCalendar-monthContainer': {
-    boxShadow: theme.shadows[1],
+    // boxShadow: theme.shadows[1],
 
     '> *': {
       margin: '10px 0',

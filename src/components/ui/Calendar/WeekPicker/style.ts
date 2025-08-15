@@ -4,7 +4,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 const WeekPickerWrapper = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   padding: theme.spacing(2),
-  boxShadow: theme.shadows[1],
+  // boxShadow: theme.shadows[1],
   width: 'calc(100% + 40px)',
   marginLeft: '-20px',
 
