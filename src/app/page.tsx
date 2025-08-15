@@ -9,8 +9,6 @@ import s from './style.module.scss';
 import useInitState from '@/components/page/Home/hooks/useInitState';
 import { StatusReq } from '@/types';
 import SpinnerCopmonent from '@/components/ui/Spiner';
-import useTelegramInitData from '@/utils/useTelegramUserId';
-import createGetUrl from '@/utils/createGetUrl';
 
 export default function HomePage() {
   const { titles, status } = useInitState();
@@ -18,10 +16,10 @@ export default function HomePage() {
   if (status === StatusReq.pending) {
     return <SpinnerCopmonent page />;
   }
-
   return (
     <Page back={false}>
       <div className={s.app_wrapper}>
+        <Header titles={titles} />
         <PremiumService />
         <Navigation />
       </div>

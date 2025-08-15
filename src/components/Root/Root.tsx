@@ -28,10 +28,6 @@ function RootInner({ children }: PropsWithChildren) {
 
   const data = useTelegramInitData();
 
-  if (!data.query_id || !data.user || !data.auth_date || !data.signature || !data.hash) {
-    return null;
-  }
-
   return (
     <AppRoot
       appearance={isDark ? 'dark' : 'light'}
@@ -48,11 +44,12 @@ function RootInner({ children }: PropsWithChildren) {
                 minHeight: '100vh',
               }}
             >
-              {!data.query_id || !data.user || !data.auth_date || !data.signature || !data.hash ? (
+              {children}
+              {/* {!data.query_id || !data.user || !data.auth_date || !data.signature || !data.hash ? (
                 <SpinnerCopmonent />
               ) : (
                 children
-              )}
+              )} */}
             </List>
           </TimeServiceProvider>
         </SelectServiceProvider>

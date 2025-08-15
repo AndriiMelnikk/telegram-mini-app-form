@@ -37,7 +37,7 @@ const Send = () => {
     const endTime = add30Minutes(timeValue.time || '00:00');
 
     const hard = {
-      user_id: user?.id,
+      user_id: String(user?.id),
       start: dateTimeToTimestamp({ time: timeValue.time, date: timeValue.date }),
       end: dateTimeToTimestamp({ time: endTime, date: timeValue.date }),
     };

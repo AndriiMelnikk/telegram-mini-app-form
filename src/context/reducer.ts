@@ -6,9 +6,9 @@ import axios from 'axios';
 import createGetUrl from '@/utils/createGetUrl';
 
 const url = createGetUrl()
+
 export const getServices = async () => {
   try {
-    alert(url);
     const response = await axios.get(url);
     setCookie('token', response?.data.token, 14);
 
@@ -23,7 +23,6 @@ class Thunk {
     dispatch({ status: StatusReq.pending });
 
     const response = await getServices();
-
     const _services = transformServices(response?.data.data.services);
 
     dispatch({
