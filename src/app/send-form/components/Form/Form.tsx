@@ -33,13 +33,6 @@ function FormInputs() {
         status={errors.phone ? 'error' : undefined}
       />
       <Input
-        header="E-mail"
-        placeholder="Введіть e-mail"
-        value={values.email}
-        onChange={(e) => handleChange('email', e.target.value)}
-        status={errors.email ? 'error' : undefined}
-      />
-      <Input
         header="Коментар"
         placeholder="Коментар до запису"
         value={values.comment}
@@ -52,22 +45,22 @@ function FormInputs() {
         value={values.reminder}
         onChange={(e) => handleChange('reminder', e.target.value)}
       >
-        <option>За 1 годину до візиту</option>
-        <option>За 2 годину до візиту</option>
-        <option>За 3 годину до візиту</option>
-        <option>За 4 годину до візиту</option>
-        <option>За 5 годину до візиту</option>
-        <option>За 6 годину до візиту</option>
-        <option>За 9 годину до візиту</option>
-        <option>За 12 годину до візиту</option>
-        <option>За 15 годину до візиту</option>
-        <option>За 18 годину до візиту</option>
-        <option>За 21 годину до візиту</option>
-        <option>За 24 годину до візиту</option>
-        <option>За 2 дня до візиту</option>
-        <option>За 3 дня до візиту</option>
-        <option>За 5 дня до візиту</option>
-        <option>За 7 дня до візиту</option>
+        <option value={60}>За 1 годину до візиту</option>
+        <option value={120}>За 2 годину до візиту</option>
+        <option value={180}>За 3 годину до візиту</option>
+        <option value={240}>За 4 годину до візиту</option>
+        <option value={300}>За 5 годину до візиту</option>
+        <option value={360}>За 6 годину до візиту</option>
+        <option value={540}>За 9 годину до візиту</option>
+        <option value={720}>За 12 годину до візиту</option>
+        <option value={900}>За 15 годину до візиту</option>
+        <option value={1080}>За 18 годину до візиту</option>
+        <option value={1260}>За 21 годину до візиту</option>
+        <option value={1440}>За 24 годину до візиту</option>
+        <option value={2880}>За 2 дня до візиту</option>
+        <option value={4320}>За 3 дня до візиту</option>
+        <option value={7200}>За 5 дня до візиту</option>
+        <option value={10080}>За 7 дня до візиту</option>
       </Select>
     </div>
   );

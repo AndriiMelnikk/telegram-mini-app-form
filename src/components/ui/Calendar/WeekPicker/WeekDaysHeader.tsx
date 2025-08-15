@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React from 'react';
-dayjs.locale('uk')
+dayjs.locale('uk');
 
 type Props = {
   weekdayShort: string[];

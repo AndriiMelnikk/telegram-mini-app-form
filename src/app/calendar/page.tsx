@@ -17,14 +17,14 @@ export default function Home() {
   const { value } = useTimeServiceContext();
   const [freeTime, setFreeTime] = useState<string[]>([]);
 
-
-
-
   useEffect(() => {
-    getFreeTime(value.date || dayjs().format('YYYY-MM-DD')).then(data => setFreeTime(data))
-      .catch(err => { setFreeTime([]); console.error(err) });
-  }, [value.date])
-
+    getFreeTime(value.date || dayjs().format('YYYY-MM-DD'))
+      .then((data) => setFreeTime(data))
+      .catch((err) => {
+        setFreeTime([]);
+        console.error(err);
+      });
+  }, [value.date]);
 
   console.log(freeTime);
 
@@ -40,5 +40,3 @@ export default function Home() {
     </Page>
   );
 }
-
-

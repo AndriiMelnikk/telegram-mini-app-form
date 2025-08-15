@@ -2,7 +2,7 @@
 import React from 'react';
 import { ArrowDropDownIcon, ArrowLeftIcon, ArrowRightIcon } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
-dayjs.locale('uk')
+dayjs.locale('uk');
 
 type Props = {
   current: Dayjs;
@@ -19,7 +19,7 @@ export const WeekNavigation = ({
   goNextWeek,
   prevDisabled,
   nextDisabled,
-  setMiniCalendar
+  setMiniCalendar,
 }: Props) => (
   <div className="navigation">
     <div className="navigation-title" onClick={() => setMiniCalendar(false)}>

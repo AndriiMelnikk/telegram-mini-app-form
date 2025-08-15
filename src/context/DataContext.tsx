@@ -29,6 +29,7 @@ const useDataDispatch = () => {
 
 const initialState: initState = {
   status: StatusReq.idle,
+  user_id: '',
   titles: {
     title: '',
     subtitle: '',

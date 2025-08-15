@@ -15,6 +15,8 @@ export function transformServices(services: OriginalServiceType[]): ServiceType[
       acc[service.category].job.push({
         id: '',
         title: service.name,
+        description: service.description,
+        photo: service.photo,
         time: service.duration,
         price: service.price,
       });

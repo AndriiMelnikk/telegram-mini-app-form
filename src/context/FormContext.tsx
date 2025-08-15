@@ -4,7 +4,6 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 type FormValues = {
   name: string;
   phone: string;
-  email: string;
   comment: string;
   reminder: string;
   consent: boolean;
@@ -24,9 +23,8 @@ const FormContext = createContext<FormContextType | undefined>(undefined);
 const initialValues: FormValues = {
   name: '',
   phone: '',
-  email: '',
   comment: '',
-  reminder: 'За 1 годину до візиту',
+  reminder: '60',
   consent: false,
 };
 
@@ -40,8 +38,6 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
         return value.trim() ? '' : 'Вкажіть імʼя';
       case 'phone':
         return /^\+?\d{10,15}$/.test(value) ? '' : 'Невірний формат телефону';
-      case 'email':
-        return /\S+@\S+\.\S+/.test(value) ? '' : 'Невірний формат email';
       case 'consent':
         return value ? '' : 'Потрібно підтвердити згоду';
       default:
@@ -59,7 +55,6 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     Object.values(errors).every((e) => !e) &&
     !!values.name.trim() &&
     !!values.phone.trim() &&
-    !!values.email.trim() &&
     !!values.consent;
 
   return (

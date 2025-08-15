@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
-dayjs.locale('uk')
+dayjs.locale('uk');
 
 type Props = {
   days: Dayjs[];

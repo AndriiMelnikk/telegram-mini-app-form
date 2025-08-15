@@ -2,10 +2,10 @@ function splitTimesByPeriod(times: string[]) {
   const result: { morning: string[]; day: string[]; evening: string[] } = {
     morning: [],
     day: [],
-    evening: []
+    evening: [],
   };
 
-  times.forEach(time => {
+  times.forEach((time) => {
     const [hour] = time.split(':').map(Number);
 
     if (hour >= 6 && hour < 12) {
@@ -20,4 +20,4 @@ function splitTimesByPeriod(times: string[]) {
   return result;
 }
 
-export default splitTimesByPeriod
+export default splitTimesByPeriod;

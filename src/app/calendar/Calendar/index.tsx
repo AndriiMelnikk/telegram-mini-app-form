@@ -25,8 +25,6 @@ const CalendarBlock = () => {
     setValue({ ...value, date: dayjs().format('YYYY-MM-DD') });
   }, []);
 
-
-
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <Calendar value={data} setValue={handleTimeChange} />

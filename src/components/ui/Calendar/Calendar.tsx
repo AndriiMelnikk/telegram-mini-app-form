@@ -21,11 +21,9 @@ export default function MyCalendar({ value, setValue }: CalendarProps) {
     setDisplayMonth(value);
   }, [value]);
 
-
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
-
         {miniCalendar ? (
           <WeekPicker day={displayMonth} setValue={setValue} setMiniCalendar={setMiniCalendar} />
         ) : (
@@ -35,7 +33,8 @@ export default function MyCalendar({ value, setValue }: CalendarProps) {
             today={dayjs()}
             setValue={setValue}
             setMiniCalendar={setMiniCalendar}
-          />)}
+          />
+        )}
       </LocalizationProvider>
     </div>
   );

@@ -7,7 +7,7 @@ import splitTimesByPeriod from '@/utils/splitTimesByPeriod';
 
 type Props = {
   freeTime: string[];
-}
+};
 export default function ChangeTime({ freeTime }: Props) {
   const { value, setValue } = useTimeServiceContext();
   const [selectedTime, setSelectedTime] = useState<string | null>(value.time || null);

@@ -11,7 +11,13 @@ type CalendarProps = {
   setMiniCalendar: any;
 };
 
-const FullCalendar = ({ displayMonth, setValue, today, setDisplayMonth, setMiniCalendar }: CalendarProps) => {
+const FullCalendar = ({
+  displayMonth,
+  setValue,
+  today,
+  setDisplayMonth,
+  setMiniCalendar,
+}: CalendarProps) => {
   const theme = useTheme();
 
   const goPrevMonth = () => {

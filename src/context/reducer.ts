@@ -1,60 +1,11 @@
 import { StatusReq } from '@/types';
-import { initState, ServiceType, OriginalServiceType } from './type';
+import { initState } from './type';
 import { transformServices } from '@/utils/transformServices';
-import { setCookie, getCookie } from '@/utils/whitCockies';
+import { setCookie } from '@/utils/whitCockies';
 import axios from 'axios';
 
-const mock: OriginalServiceType[] = [
-  {
-    name: 'Service 1',
-    category: 'Молодший барбер',
-    description: 'Frontend Developer',
-    photo:
-      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
-    duration: 100,
-    price: 100,
-  },
-  {
-    name: 'Service 2',
-    category: 'Молодший барбер',
-    description: 'Backend Developer',
-    photo:
-      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
-    duration: 100,
-    price: 100,
-  },
-  {
-    name: 'Service 3',
-    category: 'Барбер',
-    description: 'UI/UX Designer',
-    photo:
-      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
-    duration: 100,
-    price: 100,
-  },
-  {
-    name: 'Service 4',
-    category: 'Додатково',
-    description: 'Project Manager',
-    photo:
-      'https://assets.alteg.io/main_service_image/basic/9/99/99a2238ab9bbc6d_20210727170754.png',
-    duration: 100,
-    price: 100,
-  },
-];
-
-const data = {
-  token:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MDEyNzQwNCIsImV4cCI6MTc1NzY4MTU2N30.Ap_GTEAdRzkcBatxEW4_NcNDcvVUBB6T5_ewTClMdQ0',
-  data: {
-    title: 'Master CRM',
-    title2: 'Master CRM - Address',
-    services: mock,
-  },
-};
-
-const URL = 'https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/validate-init-data?query_id=AAEsPF8FAAAAACw8XwVWBIDC&user=%7B%22id%22%3A90127404%2C%22first_name%22%3A%22Pete%22%2C%22last_name%22%3A%22Roman%22%2C%22username%22%3A%22peteroman%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FLPERE6DUMuvBhGV8nyEhYSH9H-6E88DTeTs2TThkFng.svg%22%7D&auth_date=1754834802&signature=qmWhnfTX8n70cuo3dNX2SApLwi9HYH2u6HR1Ljh8sjl00jELJKqz_npNZO_OfKUCuqqFISqkappNtisMTD0VBg&hash=d5ea2086d70dd28df2d5700069b4eed4a05cf0f66f6c6b249283668e986ba191'
-
+const URL =
+  'https://mstrcrm.prtestcompany.org/master-crm/client-tgbot/validate-init-data?query_id=AAEsPF8FAAAAACw8XwVWBIDC&user=%7B%22id%22%3A90127404%2C%22first_name%22%3A%22Pete%22%2C%22last_name%22%3A%22Roman%22%2C%22username%22%3A%22peteroman%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FLPERE6DUMuvBhGV8nyEhYSH9H-6E88DTeTs2TThkFng.svg%22%7D&auth_date=1754834802&signature=qmWhnfTX8n70cuo3dNX2SApLwi9HYH2u6HR1Ljh8sjl00jELJKqz_npNZO_OfKUCuqqFISqkappNtisMTD0VBg&hash=d5ea2086d70dd28df2d5700069b4eed4a05cf0f66f6c6b249283668e986ba191';
 
 const getServices = async () => {
   try {
@@ -72,17 +23,17 @@ class Thunk {
 
     const response = await getServices();
 
-    const _services = transformServices(mock);
+    const _services = transformServices(response?.data.data.services);
 
     setTimeout(() => {
-
-    setCookie('token', data.token, 14);
+      setCookie('token', response?.data.token, 14);
 
       dispatch({
         titles: {
-          title: data.data.title,
-          subtitle: data.data.title2,
+          title: response?.data.data.title,
+          subtitle: response?.data.title2 || 'title 2',
         },
+        user_id: response?.data.user_id || '',
         services: _services,
         status: StatusReq.resolved,
       });
